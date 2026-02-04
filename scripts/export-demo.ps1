@@ -25,6 +25,10 @@ if (-not $wgetExe) {
 Write-Host "Mirroring site with wget.exe..."
 & $wgetExe.Source --mirror --convert-links --page-requisites --adjust-extension --no-parent $baseUrl -P $docsPath
 
+Write-Host "Fetching admin and user pages..."
+& $wgetExe.Source --convert-links --page-requisites --adjust-extension --no-parent "${baseUrl}admin" -P $docsPath
+& $wgetExe.Source --convert-links --page-requisites --adjust-extension --no-parent "${baseUrl}home" -P $docsPath
+
 Write-Host "Normalizing docs output..."
 $mirroredDir = Join-Path $docsPath "127.0.0.1+8000"
 if (Test-Path $mirroredDir) {
@@ -38,8 +42,18 @@ if (Test-Path $mirroredDir) {
 
 Write-Host "Creating landing index..."
 $adminPage = Join-Path $docsPath "admin.html"
+$adminMirror = Join-Path $docsPath "admin\\index.html"
+$homePage = Join-Path $docsPath "home.html"
+$homeMirror = Join-Path $docsPath "home\\index.html"
 $indexPage = Join-Path $docsPath "index.html"
-if (Test-Path $indexPage) {
+
+if (Test-Path $adminMirror) {
+    Move-Item -Path $adminMirror -Destination $adminPage -Force
+}
+if (Test-Path $homeMirror) {
+    Move-Item -Path $homeMirror -Destination $homePage -Force
+}
+if (-not (Test-Path $adminPage) -and (Test-Path $indexPage)) {
     Move-Item -Path $indexPage -Destination $adminPage -Force
 }
 
