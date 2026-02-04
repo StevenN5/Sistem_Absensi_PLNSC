@@ -224,16 +224,19 @@ foreach ($file in $files) {
     $content = $content -replace 'http://127\.0\.0\.1:8000/', './'
     $content = $content -replace 'http://127\.0\.0\.1:8000', './'
     $content = $content -replace '127\.0\.0\.1:8000/', './'
-    $content = $content -replace '"/user/monthly-report"', '"./monthly-report.html"'
-    $content = $content -replace '"/user/final-report"', '"./final-report.html"'
-    $content = $content -replace '"/user/profile"', '"./profile.html"'
-    $content = $content -replace '"/user/home"', '"./home.html"'
-    $content = $content -replace '"user/monthly-report"', '"./monthly-report.html"'
-    $content = $content -replace '"user/final-report"', '"./final-report.html"'
-    $content = $content -replace '"user/profile"', '"./profile.html"'
-    $content = $content -replace '"user/home"', '"./home.html"'
-    $content = $content -replace '"/home"', '"./home.html"'
-    $content = $content -replace '"/admin"', '"./admin.html"'
+    $content = $content.Replace("./user/monthly-report", "./monthly-report.html")
+    $content = $content.Replace("./user/final-report", "./final-report.html")
+    $content = $content.Replace("./user/profile", "./profile.html")
+    $content = $content.Replace("./user/home", "./home.html")
+    $content = $content.Replace("../user/profile.html", "../profile.html")
+    $content = $content.Replace("../../user/profile.html", "../../profile.html")
+    $content = $content.Replace("./user/assets/", "./assets/")
+    $content = $content.Replace("/user/monthly-report", "./monthly-report.html")
+    $content = $content.Replace("/user/final-report", "./final-report.html")
+    $content = $content.Replace("/user/profile", "./profile.html")
+    $content = $content.Replace("/user/home", "./home.html")
+    $content = $content.Replace("/home", "./home.html")
+    $content = $content.Replace("/admin", "./admin.html")
     Set-Content -Path $file.FullName -Value $content -Encoding UTF8
 }
 
