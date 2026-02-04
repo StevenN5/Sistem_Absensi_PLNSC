@@ -1,104 +1,48 @@
-<p align="center"><a href="https://ams.aliatayee.com" target="_blank"><h1>Attendance Management System</h1></a></p>
+# Attendance Management System
 
-## About Attendance Management System
+Aplikasi manajemen absensi berbasis web dengan Laravel. Menyediakan dashboard admin dan pengguna untuk mengelola pegawai, jadwal, absensi, serta laporan.
 
-Attendance Management System is a web application based on Laravel which keeps track of employee hours. It is the system you use to document the time your employees work and the time they take off.
+## Fitur Utama
+- Dashboard admin dengan ringkasan absensi
+- Manajemen pegawai (tambah, ubah, hapus)
+- Manajemen jadwal (jam masuk/pulang)
+- Log absensi dengan status (tepat waktu, terlambat, terlalu cepat)
+- Daftar keterlambatan
+- Daftar pulang awal/izin
+- Daftar lembur
+- Lembar absensi (tampilan matriks harian/bulanan)
+- Ekspor sheet report per pengguna dan semua pengguna
+- Upload/unduh laporan bulanan dan final
+- Manajemen perangkat finger (list/tambah/ubah/detail)
+- Profil pengguna dan riwayat absensi pengguna
 
-## Major Technologies
-- HTML5
-- CSS
-- JAVASCRIPT
-- BOOTSTRAP
-- PHP
-- LARAVEL
+## Bahasa Pemrograman & Teknologi
+- PHP (Laravel)
+- JavaScript (jQuery, DataTables)
+- HTML (Blade Template)
+- CSS (Bootstrap)
 
-## Demo
-<a href="http://ams.alihost.co">Demo link</a> 
-
-  ### Admin credential
-    username:ali@aliatayee.com
-    password:ali123
-
-
-### Install & Setup
-
-To setup and install Attendance Management System project, follow the below steps:
-- Clone this project by the command: 
-
-```
-$ git clone https://github.com/aliatayee/Attendance_Management_System
-```
-
-- Then switch to the project folder by the bellow query:
-
-```
-$ cd Attendance_Management_System
+## Menjalankan (Local)
+```bash
+composer install
+npm install
+cp .env.example .env
+php artisan key:generate
+php artisan migrate --seed
 ```
 
-- Then open ```env``` file and update database credentials.
-
-- Then run the below command to install composer dependencies
-
-```
-$ composer install
+## Run
+```bash
+php artisan serve
 ```
 
-- Then run the below command to install dependencies
-
+## Demo Statis (GitHub Pages)
+Repo ini menyediakan exporter demo statis:
+```bash
+php artisan serve --host 127.0.0.1 --port 8000
+powershell -ExecutionPolicy Bypass -File .\scripts\export-demo.ps1
 ```
-$ npm i
-```
-- Then run the below command to migrate the tables.
+Publish folder `docs/` lewat GitHub Pages.
 
-```
-$ php artisan migrate 
-```
-- Then run the below command to run seeder.
-
-```
-$ php artisan db:seed 
-```
-
-- Finally, run the below command to start the project.
-
-```
-$ php artisan serve
-```
-
-## Screenshots
-![1](https://user-images.githubusercontent.com/74867463/144262662-b7fbe66e-5c4c-46fb-8bab-9cf3121c2032.png)
-![2](https://user-images.githubusercontent.com/74867463/144262668-545c4d8d-8570-4e38-a769-4c26520e366d.png)
-![3](https://user-images.githubusercontent.com/74867463/144262431-32223a06-8c25-49fd-b969-56a4bab697f2.png)
-![4](https://user-images.githubusercontent.com/74867463/144262645-29d4bfa4-c737-4123-8c22-c8c1fd49477e.png)
-
-
-### Prerequisites
-- PHP installed
-- Composer installed
-- IDE to edit and run the code (We use Visual Studio Code 🔥).
-- Git to versionning your work.
-
-### Authors
-👤 **Ali**
-
-- GitHub: [@aliatayee](https://github.com/aliatayee)
-- Twitter: [@aqaatayee](https://twitter.com/aqaatayee)
-
-
-## 🤝 Contributing
-Contributions, issues, and feature requests are welcome!
-
-Feel free to check the [issues page](../../issues/).
-
-## Show your support
-Give a ⭐️ if you like this project!
-
-## Acknowledgments
-- Hat tip to anyone whose code was used
-- Inspiration
-- etc
-
-## Contributing
-
-Thank you for considering contributing to the attendance management system!.
-
+## Lisensi
+MIT
