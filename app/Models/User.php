@@ -5,58 +5,53 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
+
 class User extends Authenticatable
 {
     use Notifiable;
 
+    protected $fillable = [
+        'name',
+        'email',
+        'password',
+        'pin_code',
+        'phone_number',
+        'address',
+        'birth_date',
+        'institution',
+    ];
+
+    protected $hidden = [
+        'pin_code',
+        'password',
+        'remember_token',
+    ];
+
+    protected $casts = [
+        'email_verified_at' => 'datetime',
+    ];
 
     public function getRouteKeyName()
     {
         return 'name';
     }
-    
+
     public function roles()
     {
-        return $this->belongsToMany('App\Models\Role', 'role_users', 'user_id', 'role_id');
+        return $this->belongsToMany(Role::class, 'role_users', 'user_id', 'role_id');
     }
 
-    public function hasAnyRole($roles)
+    public function hasRole(string $role): bool
     {
-        if (Is_array($roles)) {
-            foreach ($roles as $role) {
-                if ($this->hasRole($role)) {
-                    return true;
-                }
-            }
-        } else {
-            if ($this->hasRole($roles)) {
-                return true;
-            }
-        }
-
-        return false;
+        // Cara aman: cek apakah ada role dengan slug tertentu
+        return $this->roles()->where('slug', $role)->exists();
     }
 
-    public static function hasRole($role)
+    public function hasAnyRole(array|string $roles): bool
     {
-        if (auth()->user()->roles()->first()->slug === $role) {
-            return true;
-        }
-        return false;
+        $roles = is_array($roles) ? $roles : [$roles];
+
+        return $this->roles()->whereIn('slug', $roles)->exists();
     }
-
-
-    protected $fillable = [
-        'name', 'email', 'password', 'pin_code',
-    ];
-
-  
-    protected $hidden = [
-        'pin_code','password', 'remember_token',
-    ];
-
-  
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
 }
+?>

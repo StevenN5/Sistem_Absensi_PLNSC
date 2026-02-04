@@ -14,8 +14,39 @@ class EmployeeController extends Controller
    
     public function index()
     {
-        
-        return view('admin.employee')->with(['employees'=> Employee::all(), 'schedules'=>Schedule::all()]);
+        $employees = Employee::all();
+        $usersByEmail = User::all()->keyBy('email');
+
+        foreach ($employees as $employee) {
+            $user = $employee->email ? ($usersByEmail[$employee->email] ?? null) : null;
+            if (!$user) {
+                continue;
+            }
+
+            $needsUpdate = false;
+            if (!$employee->phone_number && $user->phone_number) {
+                $employee->phone_number = $user->phone_number;
+                $needsUpdate = true;
+            }
+            if (!$employee->address && $user->address) {
+                $employee->address = $user->address;
+                $needsUpdate = true;
+            }
+            if (!$employee->birth_date && $user->birth_date) {
+                $employee->birth_date = $user->birth_date;
+                $needsUpdate = true;
+            }
+            if (!$employee->institution && $user->institution) {
+                $employee->institution = $user->institution;
+                $needsUpdate = true;
+            }
+
+            if ($needsUpdate) {
+                $employee->save();
+            }
+        }
+
+        return view('admin.employee')->with(['employees'=> $employees, 'schedules'=>Schedule::all()]);
     }
 
     public function store(EmployeeRec $request)
@@ -24,7 +55,12 @@ class EmployeeController extends Controller
 
         $employee = new Employee;
         $employee->name = $request->name;
+        $employee->phone_number = $request->phone_number;
+        $employee->address = $request->address;
+        $employee->birth_date = $request->birth_date;
+        $employee->institution = $request->institution;
         $employee->position = $request->position;
+        $employee->major = $request->major;
         $employee->email = $request->email;
         $employee->pin_code = bcrypt($request->pin_code);
         $employee->save();
@@ -40,7 +76,7 @@ class EmployeeController extends Controller
 
         // $employee->roles()->attach($role);
 
-        flash()->success('Success','Employee Record has been created successfully !');
+        flash()->success('Berhasil','Data karyawan berhasil dibuat.');
 
         return redirect()->route('employees.index')->with('success');
     }
@@ -51,7 +87,12 @@ class EmployeeController extends Controller
         $request->validated();
 
         $employee->name = $request->name;
+        $employee->phone_number = $request->phone_number;
+        $employee->address = $request->address;
+        $employee->birth_date = $request->birth_date;
+        $employee->institution = $request->institution;
         $employee->position = $request->position;
+        $employee->major = $request->major;
         $employee->email = $request->email;
         $employee->pin_code = bcrypt($request->pin_code);
         $employee->save();
@@ -65,7 +106,7 @@ class EmployeeController extends Controller
             $employee->schedules()->attach($schedule);
         }
 
-        flash()->success('Success','Employee Record has been Updated successfully !');
+        flash()->success('Berhasil','Data karyawan berhasil diperbarui.');
 
         return redirect()->route('employees.index')->with('success');
     }
@@ -74,7 +115,7 @@ class EmployeeController extends Controller
     public function destroy(Employee $employee)
     {
         $employee->delete();
-        flash()->success('Success','Employee Record has been Deleted successfully !');
+        flash()->success('Berhasil','Data karyawan berhasil dihapus.');
         return redirect()->route('employees.index')->with('success');
     }
 }

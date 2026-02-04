@@ -4,12 +4,16 @@
         @if (Route::has('login'))
         <div class="top-right links color-white">
             @auth
-            <a href="{{ url('/admin') }}">Admin</a>
+                @if (auth()->user()->hasRole('admin'))
+                    <a href="{{ url('/admin') }}">Admin</a>
+                @else
+                    <a href="{{ route('user.attendance.index') }}">Absensi</a>
+                @endif
             @else
-            <a style="color: white" href="{{ route('login') }}">Login</a>
+            <a style="color: white" href="{{ route('login') }}">Masuk</a>
 
             @if (Route::has('register'))
-            <a href="{{ route('register') }}">Register</a>
+            <a href="{{ route('register') }}">Daftar</a>
             @endif
             @endauth
         </div>

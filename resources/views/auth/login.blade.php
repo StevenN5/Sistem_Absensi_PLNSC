@@ -5,8 +5,8 @@
     <div class="wrapper-page">
         <div class="card overflow-hidden account-card mx-3">
             <div class="bg-primary p-4 text-white text-center position-relative">
-                <h4 class="font-20 m-b-5">Welcome Back !</h4>
-                <p class="text-white-50 mb-4">Sign in Sign in as Admin to AMS</p>
+                <h4 class="font-20 m-b-5">{{ __('global.login') }}</h4>
+                <p class="text-white-50 mb-4">{{ __('global.welcome') }}</p>
                 <a href="{{ route('welcome') }}" class="logo logo-admin">
                     <h1>A</h1>
                 </a>
@@ -16,7 +16,7 @@
                     @csrf
 
                     <div class="form-group">
-                        <label for="email" class="col-form-label ">{{ __('Email Address') }}</label>
+                        <label for="email" class="col-form-label ">{{ __('global.email') }}</label>
 
                         <input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
                             name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
@@ -29,7 +29,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="password" class="col-form-label ">{{ __('Password') }}</label>
+                        <label for="password" class="col-form-label ">{{ __('global.login_password') }}</label>
 
 
                         <input id="password" type="password" class="form-control @error('password') is-invalid @enderror"
@@ -49,15 +49,18 @@
                                     {{ old('remember') ? 'checked' : '' }}>
 
                                 <label class="form-check-label" for="remember">
-                                    {{ __('Remember Me') }}
+                                    {{ __('global.remember_me') }}
                                 </label>
                             </div>
                         </div>
                         <div class="col-sm-6 text-right">
-                            <button class="btn btn-primary w-md waves-effect waves-light" type="submit">Log In</button>
+                            <button class="btn btn-primary w-md waves-effect waves-light" type="submit">{{ __('global.login') }}</button>
                         </div>
                     </div>
 
+                    <div class="form-group text-center m-t-10">
+                        <a href="{{ route('register') }}" class="text-muted">{{ __('global.create_account') }}</a>
+                    </div>
 
                 </form>
             </div>

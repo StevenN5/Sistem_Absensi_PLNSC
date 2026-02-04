@@ -1,45 +1,84 @@
 @extends('layouts.master')
 
+@section('css')
+<style>
+    .admin-card {
+        border-radius: 16px;
+        border: 1px solid #e6e3ef;
+        box-shadow: 0 16px 32px rgba(15, 23, 42, 0.06);
+    }
+    .admin-card .card-body,
+    .admin-card .card-header {
+        padding: 20px;
+    }
+    .admin-table thead th {
+        background: #f7f5fb;
+        color: #5b6073;
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        border-bottom: 1px solid #e6e3ef;
+    }
+    .admin-table tbody td {
+        vertical-align: middle;
+    }
+    .admin-toolbar {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-bottom: 16px;
+    }
+    .admin-toolbar .btn {
+        border-radius: 12px;
+        font-weight: 600;
+    }
+</style>
+@endsection
+
 @section('content')
 
+    @php
+        $demoMode = $demoMode ?? false;
+    @endphp
 
-
-        <div style="margin-bottom: 10px;" class="row">
+        <div class="row">
 
             <div class="col-lg-12">
 
-                <a class="btn btn-success" href="{{ route('finger_device.create') }}">
+                <div class="admin-toolbar">
+                    <a class="btn btn-success" href="{{ route('finger_device.create') }}">
 
-                    {{ trans('global.add') }} {{ trans('cruds.finger_device.title_singular') }}
+                        {{ trans('global.add') }} {{ trans('cruds.finger_device.title_singular') }}
 
-                </a>
+                    </a>
 
-                {{-- <a class="btn btn-primary"
+                    {{-- <a class="btn btn-primary"
 
                    href="{{ route('finger_device.get.attendance') }}">
 
                     <i class="fas fa-cogs"></i>
 
-                    Run Attendance Queue
+                    Jalankan Antrian Absensi
 
-                </a> --}}
+                    </a> --}}
 
-                <a class="btn btn-primary"
+                    <a class="btn btn-primary"
 
-                   href="{{ route('finger_device.clear.attendance') }}">
+                       href="{{ route('finger_device.clear.attendance') }}">
 
-                    <i class="fas fa-cog"></i>
+                        <i class="fas fa-cog"></i>
 
-                    Clear device attendance
+                        Bersihkan data absensi perangkat
 
-                </a>
+                    </a>
+                </div>
 
             </div>
 
         </div>
 
 
-    <div class="card">
+    <div class="card admin-card">
 
         <div class="card-header">
 
@@ -53,7 +92,7 @@
 
             <div class="table-rep-plugin">
                 <div class="table-responsive mb-0" data-pattern="priority-columns">
-                    <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                    <table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap admin-table" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                             
                     <thead>
 
@@ -85,25 +124,18 @@
 
                         </th>
 
-                        <th>
+                        <th>Status</th>
 
-                            Status
-
-                        </th>
-
-                        <th>
-                            Actions
-
-                        </th>
+                        <th>{{ trans('global.actions') }}</th>
 
                     </tr>
 
                     </thead>
 
                     @php
-
-                        $helper = new \App\Helpers\FingerHelper();
-
+                        if (!$demoMode) {
+                            $helper = new \App\Helpers\FingerHelper();
+                        }
                     @endphp
 
                     <tbody>
@@ -140,26 +172,25 @@
 
                             <td>
 
-                                @php
-
+                            @php
+                                if ($demoMode) {
+                                    $isActive = (bool) ($finger_device->status ?? true);
+                                } else {
                                     $device = $helper->init($finger_device->ip);
+                                    $isActive = $helper->getStatus($device);
+                                }
+                            @endphp
 
-                                @endphp
-
-                                @if($helper->getStatus($device))
+                                @if($isActive)
 
                                     <div class="badge badge-success">
-
-                                        Active
-
+                                        Aktif
                                     </div>
 
                                 @else
 
                                     <div class="badge badge-danger">
-
-                                        Deactivate
-
+                                        Nonaktif
                                     </div>
 
                                 @endif
@@ -172,7 +203,7 @@
 
                                         <i class="fas fa-plus"></i>
 
-                                        Add Employee
+                                        Tambah Peserta Magang
 
                                     </a>
                                     
@@ -182,7 +213,7 @@
 
                                         <i class="fas fa-plus"></i>
 
-                                        Get Attendance
+                                        Ambil Absensi
 
                                     </a>
 

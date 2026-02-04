@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use App\Models\Employee;
 use App\Models\Attendance;
 use App\Models\Leave;
+use App\Exports\SheetReportExport;
+use App\Exports\SheetReportUserExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class CheckController extends Controller
 {
@@ -16,6 +19,29 @@ class CheckController extends Controller
 
     public function CheckStore(Request $request)
     {
+        if (isset($request->status_type)) {
+            foreach ($request->status_type as $keys => $values) {
+                foreach ($values as $key => $value) {
+                    if (!$value || $value === 'hadir') {
+                        continue;
+                    }
+                    $attendance = Attendance::whereAttendance_date($keys)
+                        ->whereEmp_id($key)
+                        ->whereType(0)
+                        ->first();
+
+                    if (!$attendance) {
+                        $attendance = new Attendance();
+                        $attendance->emp_id = $key;
+                        $attendance->attendance_date = $keys;
+                        $attendance->attendance_time = '00:00:00';
+                        $attendance->type = 0;
+                    }
+                    $attendance->status_type = $value;
+                    $attendance->save();
+                }
+            }
+        }
         if (isset($request->attd)) {
             foreach ($request->attd as $keys => $values) {
                 foreach ($values as $key => $value) {
@@ -32,6 +58,7 @@ class CheckController extends Controller
                             $emp_req = Employee::whereId($data->emp_id)->first();
                             $data->attendance_time = date('H:i:s', strtotime($emp_req->schedules->first()->time_in));
                             $data->attendance_date = $keys;
+                            $data->status_type = null;
                             
                             // $emps = date('H:i:s', strtotime($employee->schedules->first()->time_in));
                             // if (!($emps >= $data->attendance_time)) {
@@ -70,12 +97,33 @@ class CheckController extends Controller
                 }
             }
         }
-        flash()->success('Success', 'You have successfully submited the attendance !');
+        flash()->success('Berhasil', 'Kehadiran berhasil disimpan.');
         return back();
     }
     public function sheetReport()
     {
 
     return view('admin.sheet-report')->with(['employees' => Employee::all()]);
+    }
+
+    public function sheetReportExport(Request $request)
+    {
+        $month = $request->query('month');
+        $export = new SheetReportExport($month);
+        $filename = $export->filename();
+
+        return Excel::download($export, $filename);
+    }
+
+    public function sheetReportExportUser(Request $request)
+    {
+        $month = $request->query('month');
+        $userId = $request->query('user_id');
+        $employee = Employee::findOrFail($userId);
+
+        $export = new SheetReportUserExport($month, $employee);
+        $filename = $export->filename();
+
+        return Excel::download($export, $filename);
     }
 }

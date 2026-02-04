@@ -8,10 +8,10 @@
 
 @section('breadcrumb')
 <div class="col-sm-6">
-    <h4 class="page-title text-left">Late Time</h4>
+    <h4 class="page-title text-left">{{ __('global.late') }}</h4>
     <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="javascript:void(0);">Home</a></li>
-        <li class="breadcrumb-item"><a href="javascript:void(0);">Late Time</a></li>
+        <li class="breadcrumb-item"><a href="javascript:void(0);">{{ __('global.home') }}</a></li>
+        <li class="breadcrumb-item"><a href="javascript:void(0);">{{ __('global.late') }}</a></li>
 
 
     </ol>
@@ -19,7 +19,7 @@
 @endsection
 
 @section('button')
-<a href="/attendance" class="btn btn-primary btn-sm btn-flat"><i class="mdi mdi-plus mr-2"></i>Attendance Table</a>
+<a href="/attendance" class="btn btn-primary btn-sm btn-flat"><i class="mdi mdi-plus mr-2"></i>{{ __('global.attendance_table') }}</a>
 
 
 @endsection
@@ -38,12 +38,12 @@
                                         
                             <thead>
                                 <tr>
-                                    <th data-priority="1">Date</th>
-                                    <th data-priority="2">Employee ID</th>
-                                    <th data-priority="3">Name</th>
-                                    <th data-priority="4">Late Time Duration</th>
-                                    <th data-priority="6">Time In</th>
-                                    <th data-priority="7">Time Out</th>
+                                    <th data-priority="1">{{ __('global.date') }}</th>
+                                    <th data-priority="2">{{ __('global.employee_id') }}</th>
+                                    <th data-priority="3">{{ __('global.name') }}</th>
+                                    <th data-priority="4">{{ __('global.late') }}</th>
+                                    <th data-priority="6">{{ __('global.time_in') }}</th>
+                                    <th data-priority="7">{{ __('global.time_out') }}</th>
 
 
                                 </tr>

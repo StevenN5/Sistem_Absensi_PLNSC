@@ -46,6 +46,16 @@ class Employee extends Model
     {
         return $this->hasMany(Overtime::class);
     }
+
+    public function finalReports()
+    {
+        return $this->hasMany(FinalReport::class, 'emp_id');
+    }
+
+    public function monthlyReports()
+    {
+        return $this->hasMany(MonthlyReport::class, 'emp_id');
+    }
     public function schedules()
     {
         return $this->belongsToMany('App\Models\Schedule', 'schedule_employees', 'emp_id', 'schedule_id');

@@ -36,16 +36,16 @@ class ApiController extends Controller
                         $check = Check::whereEmp_id($employee->id)->latest()->first();
                         $check->leave_time = date("Y-m-d H:i:s");
                         $check->save();
-                        return response()->json(['success' => 'Successful in assign the leave'], 200);
+                        return response()->json(['success' => 'Berhasil mencatat pulang'], 200);
                     }
 
                 }
 
             } else {
-                return response()->json(['error' => 'Failed to assign the attendance'], 404);
+                return response()->json(['error' => 'Gagal mencatat kehadiran'], 404);
             }
         }
-        return response()->json(['success' => 'Successful in assign the attendance'], 200);
+        return response()->json(['success' => 'Berhasil mencatat kehadiran'], 200);
     }
 
 
@@ -79,13 +79,13 @@ class ApiController extends Controller
 
                     $attendance->save();
                  } else {
-                    return response()->json(['error' => 'you assigned your attendance before'], 404);
+                    return response()->json(['error' => 'Kehadiran sudah dicatat sebelumnya'], 404);
                 }
             } else {
-                return response()->json(['error' => 'Failed to assign the attendance'], 404);
+                return response()->json(['error' => 'Gagal mencatat kehadiran'], 404);
             }
         }
-        return response()->json(['success' => 'Successful in assign the attendance'], 200);
+        return response()->json(['success' => 'Berhasil mencatat kehadiran'], 200);
 
     }
 
@@ -112,14 +112,14 @@ class ApiController extends Controller
 
                     $leave->save();
                 } else {
-                    return response()->json(['error' => 'you assigned your leave before'], 404);
+                    return response()->json(['error' => 'Pulang sudah dicatat sebelumnya'], 404);
                 }
             } else {
-                return response()->json(['error' => 'Failed to assign the leave'], 404);
+                return response()->json(['error' => 'Gagal mencatat pulang'], 404);
             }
         }
 
-        return response()->json(['success' => 'Successful in assign the leave'], 200);
+        return response()->json(['success' => 'Berhasil mencatat pulang'], 200);
     }
 
 }

@@ -71,9 +71,9 @@ class BiometricDeviceController extends Controller
 
             FingerDevices::create($request->validated() + ['serialNumber' => $serial]);
 
-            flash()->success('Success', 'Biometric Device created successfully !');
+            flash()->success('Berhasil', 'Perangkat biometrik berhasil dibuat.');
         } else {
-            flash()->error('Oops', ' Failed connecting to Biometric Device !');
+            flash()->error('Gagal', 'Gagal terhubung ke perangkat biometrik.');
         }
 
         return redirect()->route('finger_device.index');
@@ -93,7 +93,7 @@ class BiometricDeviceController extends Controller
     {
         $fingerDevice->update($request->validated());
 
-        flash()->success('Success', 'Biometric Device Updated successfully !');
+        flash()->success('Berhasil', 'Perangkat biometrik berhasil diperbarui.');
 
         return redirect()->route('finger_device.index');
     }
@@ -102,10 +102,10 @@ class BiometricDeviceController extends Controller
         try {
             $fingerDevice->delete();
         } catch (\Exception $e) {
-            toast("Failed to delete {$fingerDevice->name}", 'error');
+            toast("Gagal menghapus {$fingerDevice->name}", 'error');
         }
 
-        flash()->success('Success', 'Biometric Device deleted successfully !');
+        flash()->success('Berhasil', 'Perangkat biometrik berhasil dihapus.');
 
         return back();
     }
@@ -127,7 +127,7 @@ class BiometricDeviceController extends Controller
         foreach ($employees as $employee) {
             $device->setUser($i++, $employee->id, $employee->name, '', '0', '0');
         }
-        flash()->success('Success', 'All Employees added to Biometric device successfully!');
+        flash()->success('Berhasil', 'Semua karyawan berhasil ditambahkan ke perangkat biometrik.');
 
         return back();
     }
@@ -197,7 +197,7 @@ class BiometricDeviceController extends Controller
         }
 
         
-        flash()->success('Success', 'Attendance Queue will run in a minute!');
+        flash()->success('Berhasil', 'Antrian absensi akan dijalankan sebentar lagi.');
 
         return back();
     }

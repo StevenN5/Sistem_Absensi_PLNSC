@@ -7,12 +7,12 @@
                     <span aria-hidden="true">&times;</span></button>
               
             </div>
-            <h4 class="modal-title"><b>Add Schedule</b></h4>
+            <h4 class="modal-title"><b>Tambah Jadwal</b></h4>
             <div class="modal-body text-left">
                 <form class="form-horizontal" method="POST" action="{{ route('schedule.store') }}">
                     @csrf
                     <div class="form-group">
-                        <label for="name" class="col-sm-3 control-label">Name</label>
+                        <label for="name" class="col-sm-3 control-label">Nama</label>
 
                         
                             <div class="bootstrap-timepicker">
@@ -21,7 +21,7 @@
                         
                     </div>
                     <div class="form-group">
-                        <label for="time_in" class="col-sm-3 control-label">Time In</label>
+                        <label for="time_in" class="col-sm-3 control-label">Jam Masuk</label>
 
                         
                             <div class="bootstrap-timepicker">
@@ -30,7 +30,7 @@
                         
                     </div>
                     <div class="form-group">
-                        <label for="time_out" class="col-sm-3 control-label">Time Out</label>
+                        <label for="time_out" class="col-sm-3 control-label">Jam Pulang</label>
 
                         
                             <div class="bootstrap-timepicker">
@@ -40,8 +40,8 @@
                     </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default btn-flat pull-left" data-dismiss="modal"><i class="fa fa-close"></i> Close</button>
-                <button type="submit" class="btn btn-primary btn-flat"><i class="fa fa-save"></i> Save</button>
+                <button type="button" class="btn btn-default btn-flat pull-left" data-dismiss="modal"><i class="fa fa-close"></i> Tutup</button>
+                <button type="submit" class="btn btn-primary btn-flat"><i class="fa fa-save"></i> Simpan</button>
                 </form>
             </div>
         </div>
