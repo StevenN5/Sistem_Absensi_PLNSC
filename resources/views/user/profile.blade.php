@@ -181,12 +181,16 @@
         }
     </style>
 @endsection
+@php
+    $demoMode = $demoMode ?? false;
+    $displayUser = $demoMode ? $user : auth()->user();
+@endphp
     <div class="attendance-page">
         <div class="attendance-shell">
             <div class="attendance-topbar">
                 <div class="attendance-greeting">
                     <span>Selamat datang kembali</span>
-                    <h1>{{ auth()->user()->name }}</h1>
+                    <h1>{{ $displayUser->name }}</h1>
                     <div class="user-nav">
                         <a href="{{ route('home') }}">Kehadiran</a>
                         <a href="{{ route('user.monthly-report') }}">Monthly Report</a>
@@ -219,27 +223,27 @@
                         <div class="form-group col-md-6">
                             <label for="name">{{ __('global.name') }}</label>
                             <input id="name" type="text" class="form-control" name="name"
-                                value="{{ old('name', $user->name) }}" required>
+                                value="{{ old('name', $displayUser->name) }}" required>
                         </div>
                         <div class="form-group col-md-6">
                             <label for="phone_number">{{ __('global.phone_number') }}</label>
                             <input id="phone_number" type="text" class="form-control" name="phone_number"
-                                value="{{ old('phone_number', $user->phone_number) }}" required>
+                                value="{{ old('phone_number', $displayUser->phone_number) }}" required>
                         </div>
                         <div class="form-group col-md-12">
                             <label for="address">{{ __('global.address') }}</label>
                             <input id="address" type="text" class="form-control" name="address"
-                                value="{{ old('address', $user->address) }}" required>
+                                value="{{ old('address', $displayUser->address) }}" required>
                         </div>
                         <div class="form-group col-md-6">
                             <label for="birth_date">{{ __('global.birth_date') }}</label>
                             <input id="birth_date" type="date" class="form-control" name="birth_date"
-                                value="{{ old('birth_date', $user->birth_date) }}" required>
+                                value="{{ old('birth_date', $displayUser->birth_date) }}" required>
                         </div>
                         <div class="form-group col-md-6">
                             <label for="institution">{{ __('global.institution') }}</label>
                             <input id="institution" type="text" class="form-control" name="institution"
-                                value="{{ old('institution', $user->institution) }}" required>
+                                value="{{ old('institution', $displayUser->institution) }}" required>
                         </div>
                         <div class="form-group col-md-6">
                             <label for="position">{{ __('global.position') }}</label>
@@ -254,7 +258,7 @@
                         <div class="form-group col-md-12">
                             <label for="email">{{ __('global.email') }}</label>
                             <input id="email" type="email" class="form-control" name="email"
-                                value="{{ old('email', $user->email) }}" required>
+                                value="{{ old('email', $displayUser->email) }}" required>
                         </div>
                     </div>
                     <button class="btn btn-primary action-button" type="submit">Simpan Profil</button>

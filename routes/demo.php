@@ -51,6 +51,16 @@ $schedules = collect([$scheduleA, $scheduleB]);
 $employeeSteven = demo_employee(1, 'Steven', collect([$scheduleA]));
 $employees = collect([$employeeSteven]);
 
+$demoUser = demo_object([
+    'id' => 1,
+    'name' => 'Steven',
+    'email' => 'steven@example.com',
+    'phone_number' => '0812-0000-0000',
+    'address' => 'Jakarta',
+    'birth_date' => '1998-06-04',
+    'institution' => 'Teknik Informatika',
+]);
+
 $weekKey = now()->format('Y-W');
 $groupedLogs = [
     $weekKey => [
@@ -74,6 +84,39 @@ $groupedLogs = [
             'status' => 'On Time',
             'diff_seconds' => 480,
             'duration' => null,
+            'note' => null,
+        ],
+    ],
+];
+
+$demoUserLogs = collect([
+    demo_object([
+        'datetime' => now()->subDays(1)->format('Y-m-d') . ' 08:02',
+        'type' => 'Time In',
+        'note' => 'Macet',
+    ]),
+    demo_object([
+        'datetime' => now()->subDays(1)->format('Y-m-d') . ' 17:03',
+        'type' => 'Time Out',
+        'note' => null,
+    ]),
+    demo_object([
+        'datetime' => now()->subDays(2)->format('Y-m-d') . ' 08:00',
+        'type' => 'Time In',
+        'note' => null,
+    ]),
+]);
+
+$demoUserGroupedLogs = [
+    now()->format('Y-W') => [
+        [
+            'datetime' => now()->subDays(1)->format('Y-m-d') . ' 08:02',
+            'type' => 'Time In',
+            'note' => 'Macet',
+        ],
+        [
+            'datetime' => now()->subDays(1)->format('Y-m-d') . ' 17:03',
+            'type' => 'Time Out',
             'note' => null,
         ],
     ],
@@ -134,6 +177,38 @@ $reports = collect([
         'report_month' => now()->format('Y-m'),
     ]),
 ]);
+
+$userReports = collect([
+    demo_object([
+        'id' => 1,
+        'created_at' => now()->subDays(10),
+        'file_name' => 'Monthly-Report-Steven-Feb-2026.pdf',
+        'file_size' => 632144,
+        'report_month' => now()->format('Y-m'),
+    ]),
+]);
+
+$finalReports = collect([
+    demo_object([
+        'id' => 1,
+        'created_at' => now()->subDays(4),
+        'file_name' => 'Final-Report-Steven.pdf',
+        'file_size' => 1322144,
+    ]),
+]);
+
+$lastFinalReport = $finalReports->first();
+
+$lastAttendance = demo_object([
+    'attendance_date' => now()->format('Y-m-d'),
+    'attendance_time' => '08:02:00',
+]);
+$lastLeave = demo_object([
+    'leave_date' => now()->format('Y-m-d'),
+    'leave_time' => '17:03:00',
+]);
+$hasAttendance = true;
+$hasLeave = false;
 
 $demoDates = [
     now()->startOfMonth()->addDays(1)->format('Y-m-d'),
@@ -365,3 +440,78 @@ Route::delete('/schedule/{schedule}', function () {
 Route::post('/logout', function () {
     return redirect('/');
 })->name('logout');
+
+Route::get('/home', function () use (
+    $demoMode,
+    $demoUser,
+    $lastAttendance,
+    $lastLeave,
+    $hasAttendance,
+    $hasLeave,
+    $demoUserLogs,
+    $demoUserGroupedLogs
+) {
+    return view('user.attendance', [
+        'demoMode' => $demoMode,
+        'user' => $demoUser,
+        'lastAttendance' => $lastAttendance,
+        'lastLeave' => $lastLeave,
+        'hasAttendance' => $hasAttendance,
+        'hasLeave' => $hasLeave,
+        'logs' => $demoUserLogs,
+        'groupedLogs' => $demoUserGroupedLogs,
+    ]);
+})->name('home');
+
+Route::post('/home/time-in', function () {
+    return redirect('/home');
+})->name('home.timein.store');
+
+Route::post('/home/time-out', function () {
+    return redirect('/home');
+})->name('home.timeout.store');
+
+Route::get('/user/profile', function () use ($demoMode, $demoUser, $employeeSteven) {
+    return view('user.profile', [
+        'demoMode' => $demoMode,
+        'user' => $demoUser,
+        'employee' => $employeeSteven,
+    ]);
+})->name('user.profile');
+
+Route::post('/user/profile', function () {
+    return redirect('/user/profile');
+})->name('user.profile.update');
+
+Route::get('/user/monthly-report', function () use ($demoMode, $demoUser, $userReports) {
+    return view('user.monthly-report', [
+        'demoMode' => $demoMode,
+        'user' => $demoUser,
+        'reports' => $userReports,
+    ]);
+})->name('user.monthly-report');
+
+Route::post('/monthly-report', function () {
+    return redirect('/user/monthly-report');
+})->name('monthly-report.store');
+
+Route::get('/monthly-report/{monthlyReport}/download', function () {
+    return redirect('/user/monthly-report');
+})->name('monthly-report.download');
+
+Route::get('/user/final-report', function () use ($demoMode, $demoUser, $finalReports, $lastFinalReport) {
+    return view('user.final-report', [
+        'demoMode' => $demoMode,
+        'user' => $demoUser,
+        'reports' => $finalReports,
+        'lastFinalReport' => $lastFinalReport,
+    ]);
+})->name('user.final-report');
+
+Route::post('/final-report', function () {
+    return redirect('/user/final-report');
+})->name('final-report.store');
+
+Route::get('/final-report/{finalReport}/download', function () {
+    return redirect('/user/final-report');
+})->name('final-report.download');

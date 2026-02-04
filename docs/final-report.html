@@ -129,27 +129,27 @@
 
         <!-- full screen -->
         <li class="dropdown notification-list d-none d-md-block">
-            <a class="nav-link waves-effect" href="monthly-report/1/download.html#" id="btn-fullscreen">
+            <a class="nav-link waves-effect" href="final-report.html#" id="btn-fullscreen">
                 <i class="mdi mdi-fullscreen noti-icon"></i>
             </a>
         </li>
 
         <li class="dropdown notification-list">
             <div class="dropdown notification-list nav-pro-img">
-                <a class="dropdown-toggle nav-link arrow-none waves-effect nav-user" data-toggle="dropdown" href="monthly-report/1/download.html#" role="button" aria-haspopup="false" aria-expanded="false">
+                <a class="dropdown-toggle nav-link arrow-none waves-effect nav-user" data-toggle="dropdown" href="final-report.html#" role="button" aria-haspopup="false" aria-expanded="false">
                     <img src="assets/images/profile1.jpg" alt="user" class="rounded-circle">
                 </a>
                 <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
                     <!-- item-->
-                    <a class="dropdown-item" href="monthly-report/1/download.html#"><i class="mdi mdi-account-circle m-r-5"></i> Profil</a>
+                    <a class="dropdown-item" href="final-report.html#"><i class="mdi mdi-account-circle m-r-5"></i> Profil</a>
             
                     
-                    <a class="dropdown-item" href="monthly-report/1/download.html#"><i class="mdi mdi-lock-open-outline m-r-5"></i> Kunci layar</a>
+                    <a class="dropdown-item" href="final-report.html#"><i class="mdi mdi-lock-open-outline m-r-5"></i> Kunci layar</a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item text-danger" href="http://127.0.0.1:8000/logout" onclick="event.preventDefault();
                     document.getElementById('logout-form').submit();"><i class="mdi mdi-power text-danger"></i> Keluar</a>
                     <form id="logout-form" action="http://127.0.0.1:8000/logout" method="POST" style="display: none;">
-                    <input type="hidden" name="_token" value="LMsMHSwzq0c04zR6xhgpBtGP2EFFm7KOVyAlvYdq">                </form>
+                    <input type="hidden" name="_token" value="Gxfj0jpDyGy5IorfYO1PfPPWsiUQ7hA8nt0qdch5">                </form>
                 </div>
             </div>
         </li>
@@ -220,12 +220,12 @@
                                 </a>
                             </li>
                             <li class="">
-                                <a href="monthly-report/1/download.html" class="waves-effect mm active">
+                                <a href="monthly-report.html" class="waves-effect ">
                                     <i class="ti-folder"></i> <span> Laporan Bulanan </span>
                                 </a>
                             </li>
                             <li class="">
-                                <a href="final-report/1/download.html" class="waves-effect ">
+                                <a href="final-report.html" class="waves-effect mm active">
                                     <i class="ti-clip"></i> <span> Final Report </span>
                                 </a>
                             </li>
@@ -248,10 +248,10 @@
                    <div class="page-title-box">
     <div class="row align-items-center">
              <div class="col-sm-6">
-        <h4 class="page-title text-left">Laporan Bulanan</h4>
+        <h4 class="page-title text-left">Final Report</h4>
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="javascript:void(0);">Beranda</a></li>
-            <li class="breadcrumb-item"><a href="javascript:void(0);">Laporan Bulanan</a></li>
+            <li class="breadcrumb-item"><a href="javascript:void(0);">Final Report</a></li>
         </ol>
     </div>
             <div class="col-sm-6">
@@ -277,7 +277,7 @@
                             <strong>Ekspor ZIP</strong>
                             <span class="text-muted">per bulan</span>
                         </div>
-                        <form id="monthly-report-export-form" class="form-inline">
+                        <form id="final-report-export-form" class="form-inline">
                             <input type="month" class="form-control mr-2" name="month" required>
                             <button class="btn btn-sm btn-primary" type="submit">Ekspor ZIP</button>
                         </form>
@@ -290,25 +290,23 @@
                                         <th data-priority="1">Tanggal</th>
                                         <th data-priority="2">ID Peserta Magang</th>
                                         <th data-priority="3">Nama</th>
-                                        <th data-priority="4">Dokumen Monthly Report</th>
+                                        <th data-priority="4">Dokumen Final Report</th>
                                         <th data-priority="5">Diunggah oleh</th>
                                         <th data-priority="6">Ukuran File</th>
-                                        <th data-priority="7">Bulan</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                                                             <tr>
-                                            <td>2026-01-30 11:16</td>
+                                            <td>2026-01-30 13:44</td>
                                             <td>1</td>
                                             <td>Steven</td>
                                             <td>
-                                                <a class="file-pill" href="monthly-report/1/download.html">
+                                                <a class="file-pill" href="final-report/1/download.html">
                                                     Laporan-Februari-2026.pdf
                                                 </a>
                                             </td>
                                             <td>Steven</td>
                                             <td>814.97 KB</td>
-                                            <td>2026-02</td>
                                         </tr>
                                                                     </tbody>
                             </table>
@@ -335,13 +333,13 @@
 
      <script>
         $(function() {
-            $('#monthly-report-export-form').on('submit', function(e) {
+            $('#final-report-export-form').on('submit', function(e) {
                 e.preventDefault();
                 var month = $(this).find('[name="month"]').val();
                 if (!month) {
                     return;
                 }
-                window.location.href = "http://127.0.0.1:8000/monthly-report/export/" + month;
+                window.location.href = "http://127.0.0.1:8000/final-report/export/" + month;
             });
         });
     </script>

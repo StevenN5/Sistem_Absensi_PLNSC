@@ -302,6 +302,8 @@
     </style>
 @endsection
 @php
+    $demoMode = $demoMode ?? false;
+    $displayUser = $demoMode ? $user : auth()->user();
     if (!function_exists('format_duration')) {
         function format_duration($seconds)
         {
@@ -331,7 +333,7 @@
             <div class="attendance-topbar">
                 <div class="attendance-greeting">
                     <span>Selamat datang kembali</span>
-                    <h1>{{ auth()->user()->name }}</h1>
+                    <h1>{{ $displayUser->name }}</h1>
                     <div class="user-nav">
                         <a class="active" href="{{ route('home') }}">Kehadiran</a>
                         <a href="{{ route('user.monthly-report') }}">Monthly Report</a>
