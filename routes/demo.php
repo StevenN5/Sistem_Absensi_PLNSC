@@ -49,7 +49,19 @@ $scheduleB = demo_schedule(2, 'Shift B', '09:00', '18:00');
 $schedules = collect([$scheduleA, $scheduleB]);
 
 $employeeSteven = demo_employee(1, 'Steven', collect([$scheduleA]));
-$employees = collect([$employeeSteven]);
+$employeeRina = demo_employee(2, 'Rina', collect([$scheduleB]));
+$employeeBudi = demo_employee(3, 'Budi', collect([$scheduleA]));
+$employeeSari = demo_employee(4, 'Sari', collect([$scheduleB]));
+$employeeAndi = demo_employee(5, 'Andi', collect([$scheduleA]));
+$employeeLina = demo_employee(6, 'Lina', collect([$scheduleB]));
+$employees = collect([
+    $employeeSteven,
+    $employeeRina,
+    $employeeBudi,
+    $employeeSari,
+    $employeeAndi,
+    $employeeLina,
+]);
 
 $demoUser = demo_object([
     'id' => 1,
@@ -83,6 +95,61 @@ $groupedLogs = [
             'time' => '17:08',
             'status' => 'On Time',
             'diff_seconds' => 480,
+            'duration' => null,
+            'note' => null,
+        ],
+        [
+            'date' => now()->subDays(2)->format('Y-m-d'),
+            'emp_id' => 'EMP-002',
+            'name' => 'Rina',
+            'type' => 'Time In',
+            'time' => '09:00',
+            'status' => 'On Time',
+            'diff_seconds' => 0,
+            'duration' => null,
+            'note' => null,
+        ],
+        [
+            'date' => now()->subDays(2)->format('Y-m-d'),
+            'emp_id' => 'EMP-003',
+            'name' => 'Budi',
+            'type' => 'Time In',
+            'time' => '08:20',
+            'status' => 'Late',
+            'diff_seconds' => 1200,
+            'duration' => null,
+            'note' => 'Ban bocor',
+        ],
+        [
+            'date' => now()->subDays(1)->format('Y-m-d'),
+            'emp_id' => 'EMP-004',
+            'name' => 'Sari',
+            'type' => 'Time In',
+            'time' => '09:01',
+            'status' => 'Late',
+            'diff_seconds' => 60,
+            'duration' => null,
+            'note' => null,
+        ],
+        [
+            'date' => now()->subDays(1)->format('Y-m-d'),
+            'emp_id' => 'EMP-005',
+            'name' => 'Andi',
+            'type' => 'Time In',
+            'time' => '07:55',
+            'status' => 'On Time',
+            'diff_seconds' => 300,
+            'duration' => null,
+            'note' => null,
+        ],
+        [
+            'date' => now()->subDays(1)->format('Y-m-d'),
+            'emp_id' => 'EMP-006',
+            'name' => 'Lina',
+            'type' => 'Time In',
+            'time' => '09:05',
+            'status' => 'Late',
+            'diff_seconds' => 300,
             'duration' => null,
             'note' => null,
         ],
@@ -129,6 +196,18 @@ $latetimes = collect([
         'duration' => '00:12:00',
         'employee' => $employeeSteven,
     ]),
+    demo_object([
+        'latetime_date' => now()->subDays(2)->format('Y-m-d'),
+        'emp_id' => 'EMP-003',
+        'duration' => '00:20:00',
+        'employee' => $employeeBudi,
+    ]),
+    demo_object([
+        'latetime_date' => now()->subDays(3)->format('Y-m-d'),
+        'emp_id' => 'EMP-006',
+        'duration' => '00:08:00',
+        'employee' => $employeeLina,
+    ]),
 ]);
 
 $leaves = collect([
@@ -139,6 +218,20 @@ $leaves = collect([
         'note' => 'Pulang lebih awal',
         'employee' => $employeeSteven,
     ]),
+    demo_object([
+        'leave_date' => now()->subDays(2)->format('Y-m-d'),
+        'emp_id' => 'EMP-003',
+        'leave_time' => '16:10:00',
+        'note' => 'Keperluan mendadak',
+        'employee' => $employeeBudi,
+    ]),
+    demo_object([
+        'leave_date' => now()->subDays(3)->format('Y-m-d'),
+        'emp_id' => 'EMP-006',
+        'leave_time' => '17:30:00',
+        'note' => null,
+        'employee' => $employeeLina,
+    ]),
 ]);
 
 $overtimes = collect([
@@ -147,6 +240,18 @@ $overtimes = collect([
         'emp_id' => 'EMP-001',
         'duration' => '01:20:00',
         'employee' => $employeeSteven,
+    ]),
+    demo_object([
+        'overtime_date' => now()->subDays(4)->format('Y-m-d'),
+        'emp_id' => 'EMP-002',
+        'duration' => '00:45:00',
+        'employee' => $employeeRina,
+    ]),
+    demo_object([
+        'overtime_date' => now()->subDays(5)->format('Y-m-d'),
+        'emp_id' => 'EMP-004',
+        'duration' => '01:10:00',
+        'employee' => $employeeSari,
     ]),
 ]);
 
@@ -237,6 +342,58 @@ $demoAttendance = [
             'note' => 'Flu ringan',
         ],
     ],
+    $employeeRina->id => [
+        $demoDates[0] => [
+            'status' => 1,
+            'attendance_time' => '09:00:00',
+            'status_type' => 'hadir',
+            'note' => '',
+        ],
+        $demoDates[1] => [
+            'status' => 1,
+            'attendance_time' => '08:58:00',
+            'status_type' => 'hadir',
+            'note' => '',
+        ],
+    ],
+    $employeeBudi->id => [
+        $demoDates[0] => [
+            'status' => 0,
+            'attendance_time' => '08:20:00',
+            'status_type' => null,
+            'note' => 'Ban bocor',
+        ],
+        $demoDates[2] => [
+            'status' => 1,
+            'attendance_time' => '08:00:00',
+            'status_type' => 'izin',
+            'note' => 'Izin keluarga',
+        ],
+    ],
+    $employeeSari->id => [
+        $demoDates[1] => [
+            'status' => 1,
+            'attendance_time' => '09:01:00',
+            'status_type' => 'hadir',
+            'note' => '',
+        ],
+    ],
+    $employeeAndi->id => [
+        $demoDates[2] => [
+            'status' => 1,
+            'attendance_time' => '07:55:00',
+            'status_type' => 'hadir',
+            'note' => '',
+        ],
+    ],
+    $employeeLina->id => [
+        $demoDates[0] => [
+            'status' => 1,
+            'attendance_time' => '09:05:00',
+            'status_type' => 'tanpa_keterangan',
+            'note' => '',
+        ],
+    ],
 ];
 
 $demoLeaves = [
@@ -250,6 +407,20 @@ $demoLeaves = [
             'status' => 0,
             'leave_time' => '16:45:00',
             'note' => 'Izin pulang cepat',
+        ],
+    ],
+    $employeeRina->id => [
+        $demoDates[0] => [
+            'status' => 1,
+            'leave_time' => '18:02:00',
+            'note' => '',
+        ],
+    ],
+    $employeeBudi->id => [
+        $demoDates[0] => [
+            'status' => 0,
+            'leave_time' => '16:20:00',
+            'note' => 'Pulang lebih awal',
         ],
     ],
 ];
