@@ -1,4 +1,4 @@
-/*!
+﻿/*!
 * metismenu https://github.com/onokumus/metismenu#readme
 * A jQuery menu plugin
 * @version 3.0.4

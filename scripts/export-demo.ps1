@@ -127,6 +127,16 @@ $landingHtml = @"
 
 $landingHtml | Set-Content -Path $indexPage -Encoding UTF8
 
+Write-Host "Rewriting localhost links..."
+$files = Get-ChildItem -Path $docsPath -Recurse -File -Include *.html,*.css,*.js
+foreach ($file in $files) {
+    $content = Get-Content -Path $file.FullName -Raw
+    $content = $content -replace 'http://127\.0\.0\.1:8000/', './'
+    $content = $content -replace 'http://127\.0\.0\.1:8000', './'
+    $content = $content -replace '127\.0\.0\.1:8000/', './'
+    Set-Content -Path $file.FullName -Value $content -Encoding UTF8
+}
+
 Write-Host "Copying public assets..."
 Copy-Item (Join-Path $projectRoot "public\\assets") (Join-Path $docsPath "assets") -Recurse -Force
 Copy-Item (Join-Path $projectRoot "public\\plugins") (Join-Path $docsPath "plugins") -Recurse -Force

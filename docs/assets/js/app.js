@@ -1,4 +1,4 @@
-/*
+﻿/*
  Template Name: Veltrix - Responsive Bootstrap 4 Admin Dashboard
  Author: Themesbrand
  Website: www.themesbrand.com
@@ -128,5 +128,6 @@ function ($) {
     "use strict";
     $.MainApp.init();
 }(window.jQuery);
+
 
 

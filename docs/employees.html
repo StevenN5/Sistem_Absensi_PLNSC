@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="id">
     <head>
         <meta charset="utf-8" />
@@ -8,7 +8,7 @@
         <meta content="Dasbor Admin" name="description" />
         <meta content="Themesbrand" name="author" />
         <!-- App favicon -->
-<link rel="shortcut icon" href="http://127.0.0.1:8000/assets/images">
+<link rel="shortcut icon" href="./assets/images">
 <meta name="viewport" content="width=device-width, initial-scale=1">      
 <style>
     .admin-card {
@@ -117,7 +117,7 @@
         <!-- language -->
         <li class="notification-list d-none d-md-block">
             <span class="nav-link waves-effect">
-                <img src="http://127.0.0.1:8000/assets/images/flags/indonesia_flag.jpg" class="mr-2" height="12" alt=""/> Bahasa Indonesia
+                <img src="./assets/images/flags/indonesia_flag.jpg" class="mr-2" height="12" alt=""/> Bahasa Indonesia
             </span>
         </li>
 
@@ -140,10 +140,10 @@
                     
                     <a class="dropdown-item" href="employees.html#"><i class="mdi mdi-lock-open-outline m-r-5"></i> Kunci layar</a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item text-danger" href="http://127.0.0.1:8000/logout" onclick="event.preventDefault();
+                    <a class="dropdown-item text-danger" href="./logout" onclick="event.preventDefault();
                     document.getElementById('logout-form').submit();"><i class="mdi mdi-power text-danger"></i> Keluar</a>
-                    <form id="logout-form" action="http://127.0.0.1:8000/logout" method="POST" style="display: none;">
-                    <input type="hidden" name="_token" value="xHWTObyvnEh3YF0smC3S0cJIRROl469EqkM83j4G">                </form>
+                    <form id="logout-form" action="./logout" method="POST" style="display: none;">
+                    <input type="hidden" name="_token" value="sOz28HtgkPdBIqou0mQQFOefPIe9vpoLW3pboyvL">                </form>
                 </div>
             </div>
         </li>
@@ -444,8 +444,8 @@
             </div>
             <h4 class="modal-title"><b><span class="employee_id">Ubah Peserta Magang</span></b></h4>
             <div class="modal-body text-left">
-                <form class="form-horizontal" method="POST" action="http://127.0.0.1:8000/employees/Steven">
-                    <input type="hidden" name="_token" value="xHWTObyvnEh3YF0smC3S0cJIRROl469EqkM83j4G">                    <input type="hidden" name="_method" value="PUT">
+                <form class="form-horizontal" method="POST" action="./employees/Steven">
+                    <input type="hidden" name="_token" value="sOz28HtgkPdBIqou0mQQFOefPIe9vpoLW3pboyvL">                    <input type="hidden" name="_method" value="PUT">
                     <div class="form-group">
                         <label for="name" class="col-sm-3 control-label">Nama</label>
 
@@ -549,8 +549,8 @@
               <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             </div>
             <div class="modal-body">
-                <form class="form-horizontal" method="POST" action="http://127.0.0.1:8000/employees/Steven">
-                    <input type="hidden" name="_token" value="xHWTObyvnEh3YF0smC3S0cJIRROl469EqkM83j4G">                    <input type="hidden" name="_method" value="DELETE">
+                <form class="form-horizontal" method="POST" action="./employees/Steven">
+                    <input type="hidden" name="_token" value="sOz28HtgkPdBIqou0mQQFOefPIe9vpoLW3pboyvL">                    <input type="hidden" name="_method" value="DELETE">
                     <div class="text-center">
                         <h6>Apakah Anda yakin?</h6>
                         <h2 class="bold del_employee_name">Steven</h2>
@@ -576,8 +576,8 @@
             </div>
             <h4 class="modal-title"><b><span class="employee_id">Ubah Peserta Magang</span></b></h4>
             <div class="modal-body text-left">
-                <form class="form-horizontal" method="POST" action="http://127.0.0.1:8000/employees/Rina">
-                    <input type="hidden" name="_token" value="xHWTObyvnEh3YF0smC3S0cJIRROl469EqkM83j4G">                    <input type="hidden" name="_method" value="PUT">
+                <form class="form-horizontal" method="POST" action="./employees/Rina">
+                    <input type="hidden" name="_token" value="sOz28HtgkPdBIqou0mQQFOefPIe9vpoLW3pboyvL">                    <input type="hidden" name="_method" value="PUT">
                     <div class="form-group">
                         <label for="name" class="col-sm-3 control-label">Nama</label>
 
@@ -681,8 +681,8 @@
               <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             </div>
             <div class="modal-body">
-                <form class="form-horizontal" method="POST" action="http://127.0.0.1:8000/employees/Rina">
-                    <input type="hidden" name="_token" value="xHWTObyvnEh3YF0smC3S0cJIRROl469EqkM83j4G">                    <input type="hidden" name="_method" value="DELETE">
+                <form class="form-horizontal" method="POST" action="./employees/Rina">
+                    <input type="hidden" name="_token" value="sOz28HtgkPdBIqou0mQQFOefPIe9vpoLW3pboyvL">                    <input type="hidden" name="_method" value="DELETE">
                     <div class="text-center">
                         <h6>Apakah Anda yakin?</h6>
                         <h2 class="bold del_employee_name">Rina</h2>
@@ -708,8 +708,8 @@
             </div>
             <h4 class="modal-title"><b><span class="employee_id">Ubah Peserta Magang</span></b></h4>
             <div class="modal-body text-left">
-                <form class="form-horizontal" method="POST" action="http://127.0.0.1:8000/employees/Budi">
-                    <input type="hidden" name="_token" value="xHWTObyvnEh3YF0smC3S0cJIRROl469EqkM83j4G">                    <input type="hidden" name="_method" value="PUT">
+                <form class="form-horizontal" method="POST" action="./employees/Budi">
+                    <input type="hidden" name="_token" value="sOz28HtgkPdBIqou0mQQFOefPIe9vpoLW3pboyvL">                    <input type="hidden" name="_method" value="PUT">
                     <div class="form-group">
                         <label for="name" class="col-sm-3 control-label">Nama</label>
 
@@ -813,8 +813,8 @@
               <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             </div>
             <div class="modal-body">
-                <form class="form-horizontal" method="POST" action="http://127.0.0.1:8000/employees/Budi">
-                    <input type="hidden" name="_token" value="xHWTObyvnEh3YF0smC3S0cJIRROl469EqkM83j4G">                    <input type="hidden" name="_method" value="DELETE">
+                <form class="form-horizontal" method="POST" action="./employees/Budi">
+                    <input type="hidden" name="_token" value="sOz28HtgkPdBIqou0mQQFOefPIe9vpoLW3pboyvL">                    <input type="hidden" name="_method" value="DELETE">
                     <div class="text-center">
                         <h6>Apakah Anda yakin?</h6>
                         <h2 class="bold del_employee_name">Budi</h2>
@@ -840,8 +840,8 @@
             </div>
             <h4 class="modal-title"><b><span class="employee_id">Ubah Peserta Magang</span></b></h4>
             <div class="modal-body text-left">
-                <form class="form-horizontal" method="POST" action="http://127.0.0.1:8000/employees/Sari">
-                    <input type="hidden" name="_token" value="xHWTObyvnEh3YF0smC3S0cJIRROl469EqkM83j4G">                    <input type="hidden" name="_method" value="PUT">
+                <form class="form-horizontal" method="POST" action="./employees/Sari">
+                    <input type="hidden" name="_token" value="sOz28HtgkPdBIqou0mQQFOefPIe9vpoLW3pboyvL">                    <input type="hidden" name="_method" value="PUT">
                     <div class="form-group">
                         <label for="name" class="col-sm-3 control-label">Nama</label>
 
@@ -945,8 +945,8 @@
               <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             </div>
             <div class="modal-body">
-                <form class="form-horizontal" method="POST" action="http://127.0.0.1:8000/employees/Sari">
-                    <input type="hidden" name="_token" value="xHWTObyvnEh3YF0smC3S0cJIRROl469EqkM83j4G">                    <input type="hidden" name="_method" value="DELETE">
+                <form class="form-horizontal" method="POST" action="./employees/Sari">
+                    <input type="hidden" name="_token" value="sOz28HtgkPdBIqou0mQQFOefPIe9vpoLW3pboyvL">                    <input type="hidden" name="_method" value="DELETE">
                     <div class="text-center">
                         <h6>Apakah Anda yakin?</h6>
                         <h2 class="bold del_employee_name">Sari</h2>
@@ -972,8 +972,8 @@
             </div>
             <h4 class="modal-title"><b><span class="employee_id">Ubah Peserta Magang</span></b></h4>
             <div class="modal-body text-left">
-                <form class="form-horizontal" method="POST" action="http://127.0.0.1:8000/employees/Andi">
-                    <input type="hidden" name="_token" value="xHWTObyvnEh3YF0smC3S0cJIRROl469EqkM83j4G">                    <input type="hidden" name="_method" value="PUT">
+                <form class="form-horizontal" method="POST" action="./employees/Andi">
+                    <input type="hidden" name="_token" value="sOz28HtgkPdBIqou0mQQFOefPIe9vpoLW3pboyvL">                    <input type="hidden" name="_method" value="PUT">
                     <div class="form-group">
                         <label for="name" class="col-sm-3 control-label">Nama</label>
 
@@ -1077,8 +1077,8 @@
               <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             </div>
             <div class="modal-body">
-                <form class="form-horizontal" method="POST" action="http://127.0.0.1:8000/employees/Andi">
-                    <input type="hidden" name="_token" value="xHWTObyvnEh3YF0smC3S0cJIRROl469EqkM83j4G">                    <input type="hidden" name="_method" value="DELETE">
+                <form class="form-horizontal" method="POST" action="./employees/Andi">
+                    <input type="hidden" name="_token" value="sOz28HtgkPdBIqou0mQQFOefPIe9vpoLW3pboyvL">                    <input type="hidden" name="_method" value="DELETE">
                     <div class="text-center">
                         <h6>Apakah Anda yakin?</h6>
                         <h2 class="bold del_employee_name">Andi</h2>
@@ -1104,8 +1104,8 @@
             </div>
             <h4 class="modal-title"><b><span class="employee_id">Ubah Peserta Magang</span></b></h4>
             <div class="modal-body text-left">
-                <form class="form-horizontal" method="POST" action="http://127.0.0.1:8000/employees/Lina">
-                    <input type="hidden" name="_token" value="xHWTObyvnEh3YF0smC3S0cJIRROl469EqkM83j4G">                    <input type="hidden" name="_method" value="PUT">
+                <form class="form-horizontal" method="POST" action="./employees/Lina">
+                    <input type="hidden" name="_token" value="sOz28HtgkPdBIqou0mQQFOefPIe9vpoLW3pboyvL">                    <input type="hidden" name="_method" value="PUT">
                     <div class="form-group">
                         <label for="name" class="col-sm-3 control-label">Nama</label>
 
@@ -1209,8 +1209,8 @@
               <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             </div>
             <div class="modal-body">
-                <form class="form-horizontal" method="POST" action="http://127.0.0.1:8000/employees/Lina">
-                    <input type="hidden" name="_token" value="xHWTObyvnEh3YF0smC3S0cJIRROl469EqkM83j4G">                    <input type="hidden" name="_method" value="DELETE">
+                <form class="form-horizontal" method="POST" action="./employees/Lina">
+                    <input type="hidden" name="_token" value="sOz28HtgkPdBIqou0mQQFOefPIe9vpoLW3pboyvL">                    <input type="hidden" name="_method" value="DELETE">
                     <div class="text-center">
                         <h6>Apakah Anda yakin?</h6>
                         <h2 class="bold del_employee_name">Lina</h2>
@@ -1242,7 +1242,7 @@
                 <div class="card-body text-left">
 
                     <form method="POST" action="employees.html">
-                        <input type="hidden" name="_token" value="xHWTObyvnEh3YF0smC3S0cJIRROl469EqkM83j4G">                        <div class="form-group">
+                        <input type="hidden" name="_token" value="sOz28HtgkPdBIqou0mQQFOefPIe9vpoLW3pboyvL">                        <div class="form-group">
                             <label for="name">Nama</label>
                             <input type="text" class="form-control" placeholder="Nama" id="name" name="name"
                                 required />
@@ -1437,3 +1437,4 @@
     </div> 
         </body>
 </html>
+

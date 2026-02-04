@@ -1,13 +1,13 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="id">
     <head>
         <meta charset="utf-8" />
         <title>Sistem Manajemen Absensi</title>
         <meta content="Dasbor Admin" name="description" />
         <meta content="Themesbrand" name="author" />
-        <link rel="shortcut icon" href="http://127.0.0.1:8000/assets/images/">
+        <link rel="shortcut icon" href="./assets/images/">
         <!-- App favicon -->
-<link rel="shortcut icon" href="http://127.0.0.1:8000/assets/images">
+<link rel="shortcut icon" href="./assets/images">
 <meta name="viewport" content="width=device-width, initial-scale=1">      
     <style>
         @import  url('https://fonts.googleapis.com/css2?family=Fraunces:wght@500;700&family=Manrope:wght@400;500;600;700&display=swap');
@@ -654,13 +654,13 @@
                     <h1>Steven</h1>
                     <div class="user-nav">
                         <a class="active" href="home.html">Kehadiran</a>
-                        <a href="http://127.0.0.1:8000/user/monthly-report">Monthly Report</a>
-                        <a href="http://127.0.0.1:8000/user/final-report">Final Report</a>
-                        <a href="http://127.0.0.1:8000/user/profile">Profil</a>
+                        <a href="./user/monthly-report">Monthly Report</a>
+                        <a href="./user/final-report">Final Report</a>
+                        <a href="./user/profile">Profil</a>
                     </div>
                 </div>
-                <form method="POST" action="http://127.0.0.1:8000/logout">
-                    <input type="hidden" name="_token" value="KdRjd6NP5Khs9RwpyvtJm5kto5in39Vu5XKLy24m">                    <button class="attendance-logout" type="submit">Keluar</button>
+                <form method="POST" action="./logout">
+                    <input type="hidden" name="_token" value="nLr1xTLvNTWjhKJwSx94Ufs8KmtymlCSgAVkrwN2">                    <button class="attendance-logout" type="submit">Keluar</button>
                 </form>
             </div>
 
@@ -706,8 +706,8 @@
                             Belum
                         </span>
                     </div>
-                                            <form method="POST" action="http://127.0.0.1:8000/home/time-out" class="action-form">
-                            <input type="hidden" name="_token" value="KdRjd6NP5Khs9RwpyvtJm5kto5in39Vu5XKLy24m">                            <div class="form-group">
+                                            <form method="POST" action="./home/time-out" class="action-form">
+                            <input type="hidden" name="_token" value="nLr1xTLvNTWjhKJwSx94Ufs8KmtymlCSgAVkrwN2">                            <div class="form-group">
                                 <label for="note_time_out">Keterangan (opsional)</label>
                                 <input type="text" class="form-control" id="note_time_out" name="note"
                                     placeholder="Contoh: izin / keperluan mendadak">
@@ -860,3 +860,4 @@
     
             </body>
 </html>
+

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="id">
     <head>
         <meta charset="utf-8" />
@@ -8,7 +8,7 @@
         <meta content="Dasbor Admin" name="description" />
         <meta content="Themesbrand" name="author" />
         <!-- App favicon -->
-<link rel="shortcut icon" href="http://127.0.0.1:8000/assets/images">
+<link rel="shortcut icon" href="./assets/images">
 <meta name="viewport" content="width=device-width, initial-scale=1">      
     <!-- Table css -->
     <link href="plugins/RWD-Table-Patterns/dist/css/rwd-table.min.css" rel="stylesheet"
@@ -189,7 +189,7 @@
         <!-- language -->
         <li class="notification-list d-none d-md-block">
             <span class="nav-link waves-effect">
-                <img src="http://127.0.0.1:8000/assets/images/flags/indonesia_flag.jpg" class="mr-2" height="12" alt=""/> Bahasa Indonesia
+                <img src="./assets/images/flags/indonesia_flag.jpg" class="mr-2" height="12" alt=""/> Bahasa Indonesia
             </span>
         </li>
 
@@ -212,10 +212,10 @@
                     
                     <a class="dropdown-item" href="check.html#"><i class="mdi mdi-lock-open-outline m-r-5"></i> Kunci layar</a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item text-danger" href="http://127.0.0.1:8000/logout" onclick="event.preventDefault();
+                    <a class="dropdown-item text-danger" href="./logout" onclick="event.preventDefault();
                     document.getElementById('logout-form').submit();"><i class="mdi mdi-power text-danger"></i> Keluar</a>
-                    <form id="logout-form" action="http://127.0.0.1:8000/logout" method="POST" style="display: none;">
-                    <input type="hidden" name="_token" value="xHWTObyvnEh3YF0smC3S0cJIRROl469EqkM83j4G">                </form>
+                    <form id="logout-form" action="./logout" method="POST" style="display: none;">
+                    <input type="hidden" name="_token" value="sOz28HtgkPdBIqou0mQQFOefPIe9vpoLW3pboyvL">                </form>
                 </div>
             </div>
         </li>
@@ -338,11 +338,11 @@
         </div>
 
         <div class="card-body">
-            <form action="http://127.0.0.1:8000/check-store" method="post">
+            <form action="./check-store" method="post">
                 <div class="check-actions">
                     <button type="submit" class="btn btn-success">Simpan</button>
                 </div>
-                <input type="hidden" name="_token" value="xHWTObyvnEh3YF0smC3S0cJIRROl469EqkM83j4G">                <div class="check-wrap">
+                <input type="hidden" name="_token" value="sOz28HtgkPdBIqou0mQQFOefPIe9vpoLW3pboyvL">                <div class="check-wrap">
                     <table class="table table-bordered table-sm check-table">
                     <thead>
                         <tr>
@@ -5849,3 +5849,4 @@
     </div> 
         </body>
 </html>
+

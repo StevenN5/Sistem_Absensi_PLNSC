@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="id">
     <head>
         <meta charset="utf-8" />
@@ -8,7 +8,7 @@
         <meta content="Dasbor Admin" name="description" />
         <meta content="Themesbrand" name="author" />
         <!-- App favicon -->
-<link rel="shortcut icon" href="http://127.0.0.1:8000/assets/images">
+<link rel="shortcut icon" href="./assets/images">
 <meta name="viewport" content="width=device-width, initial-scale=1">      
 <!--Chartist Chart CSS -->
 <link rel="stylesheet" href="plugins/chartist/css/chartist.min.css">
@@ -239,7 +239,7 @@
 
 <!-- LOGO -->
 <div class="topbar-left">
-    <a href="http://127.0.0.1:8000/" class="logo">
+    <a href="./" class="logo">
         <span class="logo-text">
             <span>Sistem Manajemen</span>
             <span>Absensi</span>
@@ -265,7 +265,7 @@
         <!-- language -->
         <li class="notification-list d-none d-md-block">
             <span class="nav-link waves-effect">
-                <img src="http://127.0.0.1:8000/assets/images/flags/indonesia_flag.jpg" class="mr-2" height="12" alt=""/> Bahasa Indonesia
+                <img src="./assets/images/flags/indonesia_flag.jpg" class="mr-2" height="12" alt=""/> Bahasa Indonesia
             </span>
         </li>
 
@@ -288,10 +288,10 @@
                     
                     <a class="dropdown-item" href="admin.html#"><i class="mdi mdi-lock-open-outline m-r-5"></i> Kunci layar</a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item text-danger" href="http://127.0.0.1:8000/logout" onclick="event.preventDefault();
+                    <a class="dropdown-item text-danger" href="./logout" onclick="event.preventDefault();
                     document.getElementById('logout-form').submit();"><i class="mdi mdi-power text-danger"></i> Keluar</a>
-                    <form id="logout-form" action="http://127.0.0.1:8000/logout" method="POST" style="display: none;">
-                    <input type="hidden" name="_token" value="uQ1dR2uEnHmiDKBwxzQa8DTxNLBXdAQfh0VNtFvI">                </form>
+                    <form id="logout-form" action="./logout" method="POST" style="display: none;">
+                    <input type="hidden" name="_token" value="9Nsk9AZ4AARd7FiFNh5NAGCn1E2XYxmGEeuP4QPx">                </form>
                 </div>
             </div>
         </li>
@@ -332,7 +332,7 @@
                                 <a href="javascript:void(0);" class="waves-effect"><i class="ti-user"></i><span> Peserta Magang <span class="float-right menu-arrow"><i class="mdi mdi-chevron-right"></i></span> </span></a>
                                 <ul class="submenu">
                                     <li>
-                                        <a href="http://127.0.0.1:8000/employees" class="waves-effect "><i class="dripicons-view-apps"></i><span>Daftar Peserta Magang</span></a>
+                                        <a href="./employees" class="waves-effect "><i class="dripicons-view-apps"></i><span>Daftar Peserta Magang</span></a>
                                     </li>
                                    
                                 </ul>
@@ -341,33 +341,33 @@
                             <li class="menu-title">Manajemen</li>
 
                             <li class="">
-                                <a href="http://127.0.0.1:8000/schedule" class="waves-effect ">
+                                <a href="./schedule" class="waves-effect ">
                                     <i class="ti-time"></i> <span> Jadwal </span>
                                 </a>
                             </li>
                             <li class="">
-                                <a href="http://127.0.0.1:8000/check" class="waves-effect ">
+                                <a href="./check" class="waves-effect ">
                                     <i class="dripicons-to-do"></i> <span> Lembar Absensi </span>
                                 </a>
                             </li>
                             <li class="">
-                                <a href="http://127.0.0.1:8000/sheet-report" class="waves-effect ">
+                                <a href="./sheet-report" class="waves-effect ">
                                     <i class="dripicons-to-do"></i> <span> Laporan Sheet </span>
                                 </a>
                             </li>
 
                             <li class="">
-                                <a href="http://127.0.0.1:8000/attendance" class="waves-effect ">
+                                <a href="./attendance" class="waves-effect ">
                                     <i class="ti-calendar"></i> <span> Log Absensi </span>
                                 </a>
                             </li>
                             <li class="">
-                                <a href="http://127.0.0.1:8000/monthly-report" class="waves-effect ">
+                                <a href="./monthly-report" class="waves-effect ">
                                     <i class="ti-folder"></i> <span> Laporan Bulanan </span>
                                 </a>
                             </li>
                             <li class="">
-                                <a href="http://127.0.0.1:8000/final-report" class="waves-effect ">
+                                <a href="./final-report" class="waves-effect ">
                                     <i class="ti-clip"></i> <span> Final Report </span>
                                 </a>
                             </li>
@@ -415,9 +415,9 @@
             <p>Laporan Bulanan & Log Absensi</p>
         </div>
         <div class="hero-actions">
-            <a class="primary" href="http://127.0.0.1:8000/attendance">Kehadiran</a>
-            <a href="http://127.0.0.1:8000/employees">Peserta Magang</a>
-            <a href="http://127.0.0.1:8000/sheet-report">Laporan Sheet</a>
+            <a class="primary" href="./attendance">Kehadiran</a>
+            <a href="./employees">Peserta Magang</a>
+            <a href="./sheet-report">Laporan Sheet</a>
         </div>
     </div>
 
@@ -430,7 +430,7 @@
                     <h4>6</h4>
                     <div class="stat-meta">
                         <span>Info selengkapnya</span>
-                        <a href="http://127.0.0.1:8000/employees"><i class="mdi mdi-arrow-right"></i></a>
+                        <a href="./employees"><i class="mdi mdi-arrow-right"></i></a>
                     </div>
                 </div>
             </div>
@@ -443,7 +443,7 @@
                     <h4>82%</h4>
                     <div class="stat-meta">
                         <span>Info selengkapnya</span>
-                        <a href="http://127.0.0.1:8000/attendance"><i class="mdi mdi-arrow-right"></i></a>
+                        <a href="./attendance"><i class="mdi mdi-arrow-right"></i></a>
                     </div>
                 </div>
             </div>
@@ -456,7 +456,7 @@
                     <h4>14</h4>
                     <div class="stat-meta">
                         <span>Info selengkapnya</span>
-                        <a href="http://127.0.0.1:8000/attendance"><i class="mdi mdi-arrow-right"></i></a>
+                        <a href="./attendance"><i class="mdi mdi-arrow-right"></i></a>
                     </div>
                 </div>
             </div>
@@ -471,7 +471,7 @@
                     <h4>6</h4>
                     <div class="stat-meta">
                         <span>Info selengkapnya</span>
-                        <a href="http://127.0.0.1:8000/attendance"><i class="mdi mdi-arrow-right"></i></a>
+                        <a href="./attendance"><i class="mdi mdi-arrow-right"></i></a>
                     </div>
                 </div>
             </div>
@@ -639,3 +639,4 @@
     </div> 
         </body>
 </html>
+
