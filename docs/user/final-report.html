@@ -257,8 +257,8 @@
     </style>
 
  <!-- App css -->
-<link href="../../assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-<link href="../../assets/css/metismenu.min.css" rel="stylesheet" type="text/css">
+<link href="../assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<link href="../assets/css/metismenu.min.css" rel="stylesheet" type="text/css">
 <style>
     .logo .logo-text,
     .logo .logo-text-mini {
@@ -281,19 +281,19 @@
         font-size: 14px;
     }
 </style>
-<link href="../../assets/css/icons.css" rel="stylesheet" type="text/css" />
-<link href="../../assets/css/style.css" rel="stylesheet" type="text/css" />
-<link href="../../assets/css/mobile-overrides.css" rel="stylesheet" type="text/css" />
+<link href="../assets/css/icons.css" rel="stylesheet" type="text/css" />
+<link href="../assets/css/style.css" rel="stylesheet" type="text/css" />
+<link href="../assets/css/mobile-overrides.css" rel="stylesheet" type="text/css" />
 
 
-<link href="../../plugins/sweetalert.min.css" rel="stylesheet">
+<link href="../plugins/sweetalert.min.css" rel="stylesheet">
 <!-- Table css -->
-<link href="../../plugins/RWD-Table-Patterns/dist/css/rwd-table.min.css" rel="stylesheet" type="text/css" media="screen">
+<link href="../plugins/RWD-Table-Patterns/dist/css/rwd-table.min.css" rel="stylesheet" type="text/css" media="screen">
 <!-- DataTables -->
-<link href="../../plugins/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
-<link href="../../plugins/datatables/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+<link href="../plugins/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+<link href="../plugins/datatables/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css" />
 <!-- Responsive datatable examples -->
-<link href="../../plugins/datatables/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+<link href="../plugins/datatables/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" />
             <style>
         @import  url('https://fonts.googleapis.com/css2?family=Fraunces:wght@500;700&family=Manrope:wght@400;500;600;700&display=swap');
 
@@ -549,42 +549,43 @@
                     <span>Selamat datang kembali</span>
                     <h1>Steven</h1>
                     <div class="user-nav">
-                        <a href="../../home.html">Kehadiran</a>
-                        <a class="active" href="download.html">Monthly Report</a>
-                        <a href="../../final-report/1/download.html">Final Report</a>
-                        <a href="../../user/profile.html">Profil</a>
+                        <a href="./home">Kehadiran</a>
+                        <a href="./user/monthly-report">Monthly Report</a>
+                        <a class="active" href="final-report.html">Final Report</a>
+                        <a href="./user/profile">Profil</a>
                     </div>
                 </div>
                 <form method="POST" action="./logout">
-                    <input type="hidden" name="_token" value="NLOVdtejMaDyUzcDT9WYGFAdxPm8NrvLHzjgELAX">                    <button class="attendance-logout" type="submit">Keluar</button>
+                    <input type="hidden" name="_token" value="Z0ZZpP8bB5SK5MkL4bWYAEgdvh1X9NgTJek0mxxZ">                    <button class="attendance-logout" type="submit">Keluar</button>
                 </form>
             </div>
 
             <div class="hero-card">
                 <div>
-                    <div class="hero-title">Monthly Report</div>
-                    <div class="hero-subtitle">Unggah dokumen monthly report per bulan.</div>
+                    <div class="hero-title">Final Report Magang</div>
+                    <div class="hero-subtitle">Unggah dokumen final report dan cek histori upload.</div>
                                     </div>
                 <div>
-                    <div class="text-muted">Maksimal 5MB, format PDF.</div>
-                </div>
+                                            <div class="alert alert-info mb-2">
+                            Dokumen terakhir diunggah: 2026-01-31 14:51
+                        </div>
+                        <a class="btn btn-outline-primary action-button" href="./final-report/1/download">
+                            Unduh Final Report Terakhir
+                        </a>
+                                    </div>
             </div>
 
             <div class="action-card">
                 <div class="action-header">
-                    <div class="action-title">Upload Monthly Report</div>
+                    <div class="action-title">Upload Final Report</div>
                     <span class="action-status done">
                         Tercatat
                     </span>
                 </div>
-                <form method="POST" action="../../monthly-report.html" class="action-form" enctype="multipart/form-data">
-                    <input type="hidden" name="_token" value="NLOVdtejMaDyUzcDT9WYGFAdxPm8NrvLHzjgELAX">                    <div class="form-group">
-                        <label for="report_month">Bulan Laporan (YYYY-MM)</label>
-                        <input type="month" class="form-control" id="report_month" name="report_month" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="monthly_report">Upload Monthly Report (PDF)</label>
-                        <input type="file" class="form-control" id="monthly_report" name="monthly_report" accept=".pdf" required>
+                <form method="POST" action="./final-report" class="action-form" enctype="multipart/form-data">
+                    <input type="hidden" name="_token" value="Z0ZZpP8bB5SK5MkL4bWYAEgdvh1X9NgTJek0mxxZ">                    <div class="form-group">
+                        <label for="final_report">Upload Final Report (PDF)</label>
+                        <input type="file" class="form-control" id="final_report" name="final_report" accept=".pdf" required>
                     </div>
                     <button class="btn btn-success action-button" type="submit">
                         Upload Dokumen
@@ -593,12 +594,11 @@
             </div>
 
             <div class="logs-card">
-                <div class="logs-title">Histori Monthly Report</div>
+                <div class="logs-title">Histori Final Report</div>
                                     <div class="table-responsive">
                         <table class="table table-striped mb-0 logs-table">
                             <thead>
                                 <tr>
-                                    <th>Bulan</th>
                                     <th>Tanggal</th>
                                     <th>Dokumen</th>
                                     <th>Ukuran</th>
@@ -606,14 +606,13 @@
                             </thead>
                             <tbody>
                                                                     <tr>
-                                        <td>2026-02</td>
-                                        <td>2026-01-25 14:51</td>
+                                        <td>2026-01-31 14:51</td>
                                         <td>
-                                            <a href="download.html">
-                                                Monthly-Report-Steven-Feb-2026.pdf
+                                            <a href="./final-report/1/download">
+                                                Final-Report-Steven.pdf
                                             </a>
                                         </td>
-                                        <td>617.33 KB</td>
+                                        <td>1.26 MB</td>
                                     </tr>
                                                             </tbody>
                         </table>
@@ -622,40 +621,40 @@
         </div>
     </div>
         <!-- App's Basic Js  -->
-<script src="../../assets/js/jquery.min.js"></script>
-<script src="../../assets/js/bootstrap.bundle.min.js"></script>
-<script src="../../assets/js/metisMenu.min.js"></script>
-<script src="../../assets/js/jquery.slimscroll.js"></script>
-<script src="../../assets/js/waves.min.js"></script>
+<script src="../assets/js/jquery.min.js"></script>
+<script src="../assets/js/bootstrap.bundle.min.js"></script>
+<script src="../assets/js/metisMenu.min.js"></script>
+<script src="../assets/js/jquery.slimscroll.js"></script>
+<script src="../assets/js/waves.min.js"></script>
 
  
 <!-- App js-->
-<script src="../../assets/js/app.js"></script>
+<script src="../assets/js/app.js"></script>
 
 
 <!-- Sweet-Alert  -->
 
-<script src="../../js/sweetalert.min.js"></script>
+<script src="../js/sweetalert.min.js"></script>
 <!-- Responsive-table-->
-<script src="../../plugins/RWD-Table-Patterns/dist/js/rwd-table.min.js"></script>      
+<script src="../plugins/RWD-Table-Patterns/dist/js/rwd-table.min.js"></script>      
 <!-- Required datatable js -->
-<script src="../../plugins/datatables/jquery.dataTables.min.js"></script>
-<script src="../../plugins/datatables/dataTables.bootstrap4.min.js"></script>
+<script src="../plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="../plugins/datatables/dataTables.bootstrap4.min.js"></script>
 <!-- Buttons examples -->
-<script src="../../plugins/datatables/dataTables.buttons.min.js"></script>
-<script src="../../plugins/datatables/buttons.bootstrap4.min.js"></script>
-<script src="../../plugins/datatables/jszip.min.js"></script>
-<script src="../../plugins/datatables/pdfmake.min.js"></script>
-<script src="../../plugins/datatables/vfs_fonts.js"></script>
-<script src="../../plugins/datatables/buttons.html5.min.js"></script>
-<script src="../../plugins/datatables/buttons.print.min.js"></script>
-<script src="../../plugins/datatables/buttons.colVis.min.js"></script>
+<script src="../plugins/datatables/dataTables.buttons.min.js"></script>
+<script src="../plugins/datatables/buttons.bootstrap4.min.js"></script>
+<script src="../plugins/datatables/jszip.min.js"></script>
+<script src="../plugins/datatables/pdfmake.min.js"></script>
+<script src="../plugins/datatables/vfs_fonts.js"></script>
+<script src="../plugins/datatables/buttons.html5.min.js"></script>
+<script src="../plugins/datatables/buttons.print.min.js"></script>
+<script src="../plugins/datatables/buttons.colVis.min.js"></script>
 <!-- Responsive examples -->
-<script src="../../plugins/datatables/dataTables.responsive.min.js"></script>
-<script src="../../plugins/datatables/responsive.bootstrap4.min.js"></script>
+<script src="../plugins/datatables/dataTables.responsive.min.js"></script>
+<script src="../plugins/datatables/responsive.bootstrap4.min.js"></script>
 
 <!-- Datatable init js -->
-<script src="../../assets/pages/datatables.init.js"></script>   
+<script src="../assets/pages/datatables.init.js"></script>   
 
 
 

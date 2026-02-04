@@ -28,6 +28,16 @@ Write-Host "Mirroring site with wget.exe..."
 Write-Host "Fetching admin and user pages..."
 & $wgetExe.Source --convert-links --page-requisites --adjust-extension --no-parent "${baseUrl}admin" -P $docsPath
 & $wgetExe.Source --convert-links --page-requisites --adjust-extension --no-parent "${baseUrl}home" -P $docsPath
+& $wgetExe.Source --convert-links --page-requisites --adjust-extension --no-parent "${baseUrl}user/profile" -P $docsPath
+& $wgetExe.Source --convert-links --page-requisites --adjust-extension --no-parent "${baseUrl}user/monthly-report" -P $docsPath
+& $wgetExe.Source --convert-links --page-requisites --adjust-extension --no-parent "${baseUrl}user/final-report" -P $docsPath
+
+Write-Host "Writing direct HTML pages..."
+& $wgetExe.Source --convert-links --page-requisites --adjust-extension --no-parent "${baseUrl}admin" -O (Join-Path $docsPath "admin.html")
+& $wgetExe.Source --convert-links --page-requisites --adjust-extension --no-parent "${baseUrl}home" -O (Join-Path $docsPath "home.html")
+& $wgetExe.Source --convert-links --page-requisites --adjust-extension --no-parent "${baseUrl}user/profile" -O (Join-Path $docsPath "profile.html")
+& $wgetExe.Source --convert-links --page-requisites --adjust-extension --no-parent "${baseUrl}user/monthly-report" -O (Join-Path $docsPath "monthly-report.html")
+& $wgetExe.Source --convert-links --page-requisites --adjust-extension --no-parent "${baseUrl}user/final-report" -O (Join-Path $docsPath "final-report.html")
 
 Write-Host "Normalizing docs output..."
 $mirroredDir = Join-Path $docsPath "127.0.0.1+8000"
@@ -45,6 +55,12 @@ $adminPage = Join-Path $docsPath "admin.html"
 $adminMirror = Join-Path $docsPath "admin\\index.html"
 $homePage = Join-Path $docsPath "home.html"
 $homeMirror = Join-Path $docsPath "home\\index.html"
+$profilePage = Join-Path $docsPath "profile.html"
+$profileMirror = Join-Path $docsPath "user\\profile\\index.html"
+$monthlyPage = Join-Path $docsPath "monthly-report.html"
+$monthlyMirror = Join-Path $docsPath "user\\monthly-report\\index.html"
+$finalPage = Join-Path $docsPath "final-report.html"
+$finalMirror = Join-Path $docsPath "user\\final-report\\index.html"
 $indexPage = Join-Path $docsPath "index.html"
 
 if (Test-Path $adminMirror) {
@@ -52,6 +68,15 @@ if (Test-Path $adminMirror) {
 }
 if (Test-Path $homeMirror) {
     Move-Item -Path $homeMirror -Destination $homePage -Force
+}
+if ((Test-Path $profileMirror) -and (-not (Test-Path $profilePage))) {
+    Move-Item -Path $profileMirror -Destination $profilePage -Force
+}
+if ((Test-Path $monthlyMirror) -and (-not (Test-Path $monthlyPage))) {
+    Move-Item -Path $monthlyMirror -Destination $monthlyPage -Force
+}
+if ((Test-Path $finalMirror) -and (-not (Test-Path $finalPage))) {
+    Move-Item -Path $finalMirror -Destination $finalPage -Force
 }
 if (-not (Test-Path $adminPage) -and (Test-Path $indexPage)) {
     Move-Item -Path $indexPage -Destination $adminPage -Force
@@ -118,6 +143,9 @@ $landingHtml = @"
       <div>
         <a href="./admin.html">Dashboard Admin</a>
         <a class="secondary" href="./home.html">Dashboard User</a>
+        <a class="secondary" href="./monthly-report.html">Monthly Report</a>
+        <a class="secondary" href="./final-report.html">Final Report</a>
+        <a class="secondary" href="./profile.html">Profil</a>
       </div>
       <p class="small">Jika halaman tidak terbuka, pastikan file demo sudah di-export.</p>
     </div>
@@ -134,6 +162,11 @@ foreach ($file in $files) {
     $content = $content -replace 'http://127\.0\.0\.1:8000/', './'
     $content = $content -replace 'http://127\.0\.0\.1:8000', './'
     $content = $content -replace '127\.0\.0\.1:8000/', './'
+    $content = $content -replace '"/user/monthly-report"', '"./monthly-report.html"'
+    $content = $content -replace '"/user/final-report"', '"./final-report.html"'
+    $content = $content -replace '"/user/profile"', '"./profile.html"'
+    $content = $content -replace '"/home"', '"./home.html"'
+    $content = $content -replace '"/admin"', '"./admin.html"'
     Set-Content -Path $file.FullName -Value $content -Encoding UTF8
 }
 
