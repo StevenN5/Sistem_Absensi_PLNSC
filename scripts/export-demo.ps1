@@ -187,6 +187,35 @@ foreach ($page in $fallbackPages) {
     }
 }
 
+Write-Host "Creating redirect stubs..."
+$redirects = @(
+    @{ Path = (Join-Path $docsPath "admin\\index.html"); Target = "../admin.html" },
+    @{ Path = (Join-Path $docsPath "home\\index.html"); Target = "../home.html" },
+    @{ Path = (Join-Path $docsPath "user\\profile\\index.html"); Target = "../../profile.html" },
+    @{ Path = (Join-Path $docsPath "user\\monthly-report\\index.html"); Target = "../../monthly-report.html" },
+    @{ Path = (Join-Path $docsPath "user\\final-report\\index.html"); Target = "../../final-report.html" }
+)
+
+foreach ($redir in $redirects) {
+    $dir = Split-Path -Parent $redir.Path
+    if (-not (Test-Path $dir)) {
+        New-Item -ItemType Directory -Force -Path $dir | Out-Null
+    }
+    @"
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="refresh" content="0; url=$($redir.Target)">
+    <title>Redirect</title>
+  </head>
+  <body>
+    <p>Redirecting...</p>
+  </body>
+</html>
+"@ | Set-Content -Path $redir.Path -Encoding UTF8
+}
+
 Write-Host "Rewriting localhost links..."
 $files = Get-ChildItem -Path $docsPath -Recurse -File -Include *.html,*.css,*.js
 foreach ($file in $files) {
