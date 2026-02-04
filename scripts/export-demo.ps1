@@ -96,8 +96,8 @@ $landingHtml = @"
       <h1>Demo Sistem Absensi</h1>
       <p>Pilih dashboard yang ingin dilihat.</p>
       <div>
-        <a href="./admin/">Dashboard Admin</a>
-        <a class="secondary" href="./user/home/">Dashboard User</a>
+        <a href="./employees.html">Dashboard Admin</a>
+        <a class="secondary" href="./home.html">Dashboard User</a>
       </div>
       <p class="small">Jika halaman tidak terbuka, pastikan file demo sudah di-export.</p>
     </div>
