@@ -143,9 +143,6 @@ $landingHtml = @"
       <div>
         <a href="./admin.html">Dashboard Admin</a>
         <a class="secondary" href="./home.html">Dashboard User</a>
-        <a class="secondary" href="./monthly-report.html">Monthly Report</a>
-        <a class="secondary" href="./final-report.html">Final Report</a>
-        <a class="secondary" href="./profile.html">Profil</a>
       </div>
       <p class="small">Jika halaman tidak terbuka, pastikan file demo sudah di-export.</p>
     </div>
@@ -154,6 +151,41 @@ $landingHtml = @"
 "@
 
 $landingHtml | Set-Content -Path $indexPage -Encoding UTF8
+
+Write-Host "Ensuring user pages exist..."
+$fallbackPages = @(
+    @{ Path = $profilePage; Title = "Profil"; Target = "./home.html" },
+    @{ Path = $monthlyPage; Title = "Monthly Report"; Target = "./home.html" },
+    @{ Path = $finalPage; Title = "Final Report"; Target = "./home.html" }
+)
+
+foreach ($page in $fallbackPages) {
+    if (-not (Test-Path $page.Path)) {
+        @"
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>$($page.Title)</title>
+    <style>
+      body { font-family: Arial, sans-serif; background: #f6f7fb; color: #1f2430; padding: 24px; }
+      .card { max-width: 640px; margin: 0 auto; background: #fff; border: 1px solid #e6e9f0; border-radius: 12px; padding: 20px; }
+      a { color: #1f6feb; text-decoration: none; font-weight: 600; }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <h1>$($page.Title)</h1>
+      <p>Halaman ini belum berhasil diekspor. Silakan kembali ke dashboard user.</p>
+      <a href="$($page.Target)">Kembali ke Dashboard User</a>
+    </div>
+  </body>
+</html>
+"@ | Set-Content -Path $page.Path -Encoding UTF8
+    }
+}
 
 Write-Host "Rewriting localhost links..."
 $files = Get-ChildItem -Path $docsPath -Recurse -File -Include *.html,*.css,*.js
