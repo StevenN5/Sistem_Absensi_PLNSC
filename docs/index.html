@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Demo Absensi</title>
+    <meta name="robots" content="noindex">
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background: #f6f7fb;
+        color: #1f2430;
+        margin: 0;
+        padding: 24px;
+      }
+      .card {
+        max-width: 640px;
+        margin: 0 auto;
+        background: #ffffff;
+        border: 1px solid #e6e9f0;
+        border-radius: 12px;
+        padding: 20px;
+        box-shadow: 0 12px 24px rgba(15, 23, 42, 0.08);
+      }
+      h1 {
+        margin: 0 0 8px;
+        font-size: 22px;
+      }
+      p {
+        margin: 0 0 16px;
+        color: #5c6475;
+      }
+      a {
+        display: inline-block;
+        margin-right: 12px;
+        margin-bottom: 8px;
+        color: #ffffff;
+        background: #1f6feb;
+        padding: 8px 14px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: 600;
+      }
+      a.secondary {
+        background: #5c6475;
+      }
+      .small {
+        font-size: 12px;
+        color: #7b8498;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <h1>Demo Sistem Absensi</h1>
+      <p>Jika tidak otomatis diarahkan, gunakan tombol di bawah.</p>
+      <div>
+        <a href="./admin/">Buka Dashboard Admin</a>
+        <a class="secondary" href="./127.0.0.1+8000/">Buka Mirror (fallback)</a>
+      </div>
+      <p class="small">Halaman ini otomatis memilih lokasi demo yang tersedia.</p>
+    </div>
+    <script>
+      (function () {
+        var targets = ["./admin/", "./127.0.0.1+8000/"];
+        function tryNext(index) {
+          if (index >= targets.length) return;
+          fetch(targets[index], { method: "GET", mode: "same-origin" })
+            .then(function (res) {
+              if (res.ok) {
+                window.location.href = targets[index];
+              } else {
+                tryNext(index + 1);
+              }
+            })
+            .catch(function () {
+              tryNext(index + 1);
+            });
+        }
+        tryNext(0);
+      })();
+    </script>
+  </body>
+</html>
