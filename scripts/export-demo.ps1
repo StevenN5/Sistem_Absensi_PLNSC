@@ -28,20 +28,14 @@ Write-Host "Mirroring site with wget.exe..."
 Write-Host "Normalizing docs output..."
 $mirroredDir = Join-Path $docsPath "127.0.0.1+8000"
 if (Test-Path $mirroredDir) {
-    if (-not (Test-Path (Join-Path $docsPath "index.html"))) {
-        Get-ChildItem -Path $mirroredDir -Force | ForEach-Object {
-            Move-Item -Path $_.FullName -Destination $docsPath -Force
-        }
+    Get-ChildItem -Path $mirroredDir -Force | ForEach-Object {
+        Move-Item -Path $_.FullName -Destination $docsPath -Force
     }
     Remove-Item -Recurse -Force $mirroredDir
 }
 
 Write-Host "Creating landing index..."
-$adminPage = Join-Path $docsPath "admin.html"
 $indexPage = Join-Path $docsPath "index.html"
-if (Test-Path $indexPage) {
-    Move-Item -Path $indexPage -Destination $adminPage -Force
-}
 
 $landingHtml = @"
 <!DOCTYPE html>
@@ -102,8 +96,8 @@ $landingHtml = @"
       <h1>Demo Sistem Absensi</h1>
       <p>Pilih dashboard yang ingin dilihat.</p>
       <div>
-        <a href="./admin.html">Dashboard Admin</a>
-        <a class="secondary" href="./home.html">Dashboard User</a>
+        <a href="./admin/">Dashboard Admin</a>
+        <a class="secondary" href="./user/home/">Dashboard User</a>
       </div>
       <p class="small">Jika halaman tidak terbuka, pastikan file demo sudah di-export.</p>
     </div>
@@ -112,6 +106,16 @@ $landingHtml = @"
 "@
 
 $landingHtml | Set-Content -Path $indexPage -Encoding UTF8
+
+Write-Host "Rewriting localhost links..."
+$files = Get-ChildItem -Path $docsPath -Recurse -File -Include *.html,*.css,*.js
+foreach ($file in $files) {
+    $content = Get-Content -Path $file.FullName -Raw
+    $content = $content.Replace("http://127.0.0.1:8000/", "./")
+    $content = $content.Replace("http://127.0.0.1:8000", "./")
+    $content = $content.Replace("127.0.0.1:8000/", "./")
+    Set-Content -Path $file.FullName -Value $content -Encoding UTF8
+}
 
 Write-Host "Copying public assets..."
 Copy-Item (Join-Path $projectRoot "public\\assets") (Join-Path $docsPath "assets") -Recurse -Force
