@@ -191,6 +191,7 @@ Write-Host "Creating redirect stubs..."
 $redirects = @(
     @{ Path = (Join-Path $docsPath "admin\\index.html"); Target = "../admin.html" },
     @{ Path = (Join-Path $docsPath "home\\index.html"); Target = "../home.html" },
+    @{ Path = (Join-Path $docsPath "user\\home\\index.html"); Target = "../../home.html" },
     @{ Path = (Join-Path $docsPath "user\\profile\\index.html"); Target = "../../profile.html" },
     @{ Path = (Join-Path $docsPath "user\\monthly-report\\index.html"); Target = "../../monthly-report.html" },
     @{ Path = (Join-Path $docsPath "user\\final-report\\index.html"); Target = "../../final-report.html" }
@@ -226,6 +227,11 @@ foreach ($file in $files) {
     $content = $content -replace '"/user/monthly-report"', '"./monthly-report.html"'
     $content = $content -replace '"/user/final-report"', '"./final-report.html"'
     $content = $content -replace '"/user/profile"', '"./profile.html"'
+    $content = $content -replace '"/user/home"', '"./home.html"'
+    $content = $content -replace '"user/monthly-report"', '"./monthly-report.html"'
+    $content = $content -replace '"user/final-report"', '"./final-report.html"'
+    $content = $content -replace '"user/profile"', '"./profile.html"'
+    $content = $content -replace '"user/home"', '"./home.html"'
     $content = $content -replace '"/home"', '"./home.html"'
     $content = $content -replace '"/admin"', '"./admin.html"'
     Set-Content -Path $file.FullName -Value $content -Encoding UTF8
